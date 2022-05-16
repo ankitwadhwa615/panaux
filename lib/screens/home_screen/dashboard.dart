@@ -19,7 +19,7 @@ class _DashBoardState extends State<DashBoard> {
   static const List<Widget> _pages = <Widget>[
     HomeScreen(),
     PharmacyScreen(),
-    OrdersManagement(calledByNavBar: true,),
+    OrdersManagement(),
     PrescriptionScreen(),
     SettingsScreen()
   ];
