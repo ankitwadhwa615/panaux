@@ -17,11 +17,9 @@ Future otpConfirmationApi({required String email, required String otp}) async {
       api,
       data: jsonEncode(params),
     );
-    print(response.data);
     if (response.data['status'] == "success") {
       Fluttertoast.showToast(msg: 'Verified Successfully');
       RegistrationController controller = Get.put(RegistrationController());
-      print(response.data['token']);
       controller.token = response.data['token'];
       Get.offAll(const RegistrationScreen());
     } else {

@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hive/hive.dart';
 import 'package:panaux_customer/commons/constants.dart';
-import 'package:panaux_customer/screens/orders/widgets/appointment_details/appointment_details.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:panaux_customer/screens/home_screen/dashboard.dart';
 import 'package:panaux_customer/screens/login/login_screen.dart';
@@ -46,7 +45,7 @@ class _MyAppState extends State<MyApp> {
       debugShowCheckedModeBanner: false,
       title: 'Panaux',
       // home: OrderDetails(id: '6221a31f31d12e0016b6a9b0')
-      home: AppointmentDetails(),
+      home: const SplashManager(),
     );
   }
 }

@@ -60,9 +60,6 @@ Future register(
       'storeImage': await MultipartFile.fromFile(storeImage.path,
           filename: storeImageName),
     });
-    print(api);
-    print(formData.fields);
-    print(token );
     var response = await dio.patch(api, data: formData,options: options);
     if (response.data['status'] == "OK") {
       // var responseData = json.encode(response.data);

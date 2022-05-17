@@ -60,12 +60,12 @@ class _PharmacyScreenState extends State<PharmacyScreen> {
                         ),
                         const Text(
                           'allahbad',
-                          style: const TextStyle(
+                          style: TextStyle(
                               fontSize: 16, fontWeight: FontWeight.w400),
                         ),
                         const Text(
                           '         ',
-                          style: const TextStyle(
+                          style: TextStyle(
                               fontSize: 16, fontWeight: FontWeight.w400),
                         )
                       ],
@@ -125,12 +125,12 @@ class _PharmacyScreenState extends State<PharmacyScreen> {
                         ),
                         const Text(
                           'allahbad',
-                          style: const TextStyle(
+                          style: TextStyle(
                               fontSize: 16, fontWeight: FontWeight.w400),
                         ),
                         const Text(
                           '         ',
-                          style: const TextStyle(
+                          style: TextStyle(
                               fontSize: 16, fontWeight: FontWeight.w400),
                         )
                       ],
@@ -190,12 +190,12 @@ class _PharmacyScreenState extends State<PharmacyScreen> {
                         ),
                         const Text(
                           'allahbad',
-                          style: const TextStyle(
+                          style: TextStyle(
                               fontSize: 16, fontWeight: FontWeight.w400),
                         ),
                         const Text(
                           '         ',
-                          style: const TextStyle(
+                          style: TextStyle(
                               fontSize: 16, fontWeight: FontWeight.w400),
                         )
                       ],
@@ -255,12 +255,12 @@ class _PharmacyScreenState extends State<PharmacyScreen> {
                         ),
                         const Text(
                           'allahbad',
-                          style: const TextStyle(
+                          style: TextStyle(
                               fontSize: 16, fontWeight: FontWeight.w400),
                         ),
                         const Text(
                           '         ',
-                          style: const TextStyle(
+                          style: TextStyle(
                               fontSize: 16, fontWeight: FontWeight.w400),
                         )
                       ],
@@ -320,12 +320,12 @@ class _PharmacyScreenState extends State<PharmacyScreen> {
                         ),
                         const Text(
                           'allahbad',
-                          style: const TextStyle(
+                          style: TextStyle(
                               fontSize: 16, fontWeight: FontWeight.w400),
                         ),
                         const Text(
                           '         ',
-                          style: const TextStyle(
+                          style: TextStyle(
                               fontSize: 16, fontWeight: FontWeight.w400),
                         )
                       ],
@@ -385,12 +385,12 @@ class _PharmacyScreenState extends State<PharmacyScreen> {
                         ),
                         const Text(
                           'allahbad',
-                          style: const TextStyle(
+                          style: TextStyle(
                               fontSize: 16, fontWeight: FontWeight.w400),
                         ),
                         const Text(
                           '         ',
-                          style: const TextStyle(
+                          style: TextStyle(
                               fontSize: 16, fontWeight: FontWeight.w400),
                         )
                       ],
@@ -450,12 +450,12 @@ class _PharmacyScreenState extends State<PharmacyScreen> {
                         ),
                         const Text(
                           'allahbad',
-                          style: const TextStyle(
+                          style: TextStyle(
                               fontSize: 16, fontWeight: FontWeight.w400),
                         ),
                         const Text(
                           '         ',
-                          style: const TextStyle(
+                          style: TextStyle(
                               fontSize: 16, fontWeight: FontWeight.w400),
                         )
                       ],
