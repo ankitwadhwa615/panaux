@@ -19,7 +19,7 @@ class ProfileEditScreen extends StatefulWidget {
 class _ProfileEditScreenState extends State<ProfileEditScreen> {
   @override
   void initState() {
-    controller.setInitials();
+    // controller.setInitials();
     super.initState();
   }
 

@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
@@ -8,7 +9,10 @@ Future<bool> forgetPasswordApi(String email) async {
   var dio = Dio();
   try {
     var api = API.forgetPassword;
-    var response = await dio.post(api);
+    var params = {
+      "email": email
+    };
+    var response = await dio.post(api,data: jsonEncode(params));
     if (response.data['status']=="success") {
       Fluttertoast.showToast(msg: response.data['message']);
       return true;

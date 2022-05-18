@@ -2,9 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
-import 'package:hive/hive.dart';
 import 'package:image_picker/image_picker.dart';
-import '../../login/models/login_model.dart';
 import '../apis/update_address_api.dart';
 
 class AddressController extends GetxController {
@@ -20,23 +18,23 @@ class AddressController extends GetxController {
   TextEditingController manualAddress = TextEditingController();
   RxBool loading = true.obs;
   RxBool asyncCall = false.obs;
-  LoginModel? data;
+  // LoginModel? data;
   RxString storeImageUrl = ''.obs;
   XFile? storeImage;
-  getData() async {
-    Box? box = await Hive.openBox('userBox');
-    data = loginModelFromJson(box.get('userData'));
-    address = TextEditingController(text: data!.address?.addressLine1);
-    lat.value = data!.address!.latitude!;
-    long.value = data!.address!.longitude!;
-    storeImageUrl.value = data!.storeImage;
-    city = TextEditingController(text: data!.address?.city);
-    state = TextEditingController(text: data!.address?.state);
-    country = TextEditingController(text: data!.address?.country);
-    pinCode = TextEditingController(text: data!.address?.pincode.toString());
-    manualAddress = TextEditingController(text: data!.address?.addressLine2);
-    loading.value = false;
-  }
+  // getData() async {
+  //   Box? box = await Hive.openBox('userBox');
+  //   // data = loginModelFromJson(box.get('userData'));
+  //   address = TextEditingController(text: data!.address?.addressLine1);
+  //   lat.value = data!.address!.latitude!;
+  //   long.value = data!.address!.longitude!;
+  //   storeImageUrl.value = data!.storeImage;
+  //   city = TextEditingController(text: data!.address?.city);
+  //   state = TextEditingController(text: data!.address?.state);
+  //   country = TextEditingController(text: data!.address?.country);
+  //   pinCode = TextEditingController(text: data!.address?.pincode.toString());
+  //   manualAddress = TextEditingController(text: data!.address?.addressLine2);
+  //   loading.value = false;
+  // }
 
   updateAddress() async {
     asyncCall.value = true;

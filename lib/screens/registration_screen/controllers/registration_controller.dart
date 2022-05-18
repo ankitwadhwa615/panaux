@@ -16,8 +16,8 @@ class RegistrationController extends GetxController {
   TextEditingController email = TextEditingController();
   TextEditingController password = TextEditingController();
   TextEditingController confirmPassword = TextEditingController();
-  TextEditingController storeName = TextEditingController();
-  TextEditingController ownerName = TextEditingController();
+  TextEditingController userName = TextEditingController();
+
   TextEditingController address = TextEditingController();
   RxString lat = ''.obs;
   RxString long = ''.obs;
@@ -54,26 +54,11 @@ class RegistrationController extends GetxController {
   signUp() async {
     loading.value = true;
     String status = await register(
-      storeName: storeName.text,
-      ownerName: ownerName.text,
+      userName: userName.text,
       number: int.parse(phoneNumber.text),
-      // email: email.text,
       password: password.text,
-      city: city.text,
-      state: state.text,
-      type: bloodGroup.value,
-      country: country.text,
-      pinCode: pinCode.text,
-      address: address.text,
-      manualAddress: manualAddress.text,
-      lat: double.parse(lat.value),
-      long: double.parse(long.value),
-      profilePicture: profileImage!,
-      storeImage: storeImage!,
-      openingTime: openingTime.text,
-      closingTime: closingTime.text,
     );
-    if (status == "OK") {
+    if (status == "ok") {
       loading.value = false;
       Get.dialog(
         AlertDialog(

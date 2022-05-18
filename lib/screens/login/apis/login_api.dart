@@ -21,7 +21,7 @@ Future loginApi({
     if (response.data['status'] == "ok") {
       var responseData = json.encode(response.data['data']);
       var box = await Hive.openBox("userBox");
-      box.put('userData', responseData);
+      // box.put('userData', responseData);
       box.put('token', response.data['token']);
     } else {
       Fluttertoast.showToast(msg: response.data['message']);

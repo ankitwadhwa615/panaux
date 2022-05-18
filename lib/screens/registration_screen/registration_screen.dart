@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:panaux_customer/commons/constants.dart';
 import 'package:panaux_customer/commons/widgets/text_fields.dart';
-import 'package:panaux_customer/screens/home_screen/dashboard.dart';
 import 'package:panaux_customer/screens/registration_screen/controllers/registration_controller.dart';
 
 class RegistrationScreen extends StatefulWidget {
@@ -89,7 +88,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                     height: 20,
                   ),
                   TextFields(
-                    controller: controller.ownerName,
+                    controller: controller.userName,
                     title: 'User Name',
                     type: TextInputType.name,
                     prefixIcon: Icons.person,
@@ -160,7 +159,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                   GestureDetector(
                     onTap: () {
                       if (_personalFormKey.currentState!.validate()) {
-                          Get.to(const DashBoard());
+                          controller.signUp();
                       }
                     },
                     child: Container(

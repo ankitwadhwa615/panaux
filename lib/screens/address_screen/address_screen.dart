@@ -18,7 +18,7 @@ class _AddressScreenState extends State<AddressScreen> {
   AddressController controller = Get.put(AddressController());
   @override
   void initState() {
-    controller.getData();
+    // controller.getData();
     super.initState();
   }
 

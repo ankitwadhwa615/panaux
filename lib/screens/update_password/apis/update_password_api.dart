@@ -22,9 +22,9 @@ Future updatePasswordApi({
       "oldPassword": oldPassword,
     };
     var response =
-        await dio.patch(api, data: jsonEncode(params), options: options);
-    if (response.statusCode == 200 || response.statusCode == 201) {
-      Fluttertoast.showToast(msg: "Password Updated");
+        await dio.post(api, data: jsonEncode(params), options: options);
+    if (response.data['status'] == "OK") {
+      Fluttertoast.showToast(msg:response.data['message']);
       Get.back();
     } else {
       Fluttertoast.showToast(msg: response.data['message']);
