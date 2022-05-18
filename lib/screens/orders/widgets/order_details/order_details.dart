@@ -123,7 +123,9 @@ class _OrderDetailsState extends State<OrderDetails> {
               ),
               const SizedBox(height: 20,),
               MaterialButton(
-                onPressed: () {},
+                onPressed: () {
+                  Get.back();
+                },
                 child: const Text(
                   'CANCEL',
                   style: TextStyle(color: Colors.white),
