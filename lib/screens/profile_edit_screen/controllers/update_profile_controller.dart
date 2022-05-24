@@ -60,9 +60,7 @@ class UpdateProfileController extends GetxController {
     try {
       loading.value = true;
       Position? position;
-      position = await GeolocatorPlatform.instance.getCurrentPosition(
-          locationSettings:
-              const LocationSettings(accuracy: LocationAccuracy.high));
+      position = await GeolocatorPlatform.instance.getCurrentPosition();
       lat.value = position.latitude.toString();
       long.value = position.longitude.toString();
       loading.value = false;

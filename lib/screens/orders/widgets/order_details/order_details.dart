@@ -16,7 +16,7 @@ class _OrderDetailsState extends State<OrderDetails> {
       backgroundColor: Colors.white,
       appBar: AppBar(
         elevation: 0,
-        automaticallyImplyLeading: true,
+        leading:IconButton(icon: Icon(Icons.arrow_back,color: Colors.black,),onPressed: (){Get.back();},),
         backgroundColor: Colors.transparent,
       ),
       body: SingleChildScrollView(

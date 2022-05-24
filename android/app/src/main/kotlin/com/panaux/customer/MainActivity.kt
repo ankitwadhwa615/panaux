@@ -1,4 +1,4 @@
-package com.example.panaux_customer
+package com.panaux.customer
 
 import io.flutter.embedding.android.FlutterActivity
 

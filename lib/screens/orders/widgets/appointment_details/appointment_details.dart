@@ -20,7 +20,7 @@ class _AppointmentDetailsState extends State<AppointmentDetails> {
             SizedBox(
               height: Get.width * 0.65,
               width: Get.width,
-              child: Image.asset('assets/images/doctorthree.jpg',fit:BoxFit.cover,),
+              child: Stack(children: [Image.asset('assets/images/doctorthree.jpg',fit:BoxFit.cover,),Positioned(top:25,left: 0,child: IconButton(icon: Icon(Icons.arrow_back,color: Colors.black,),onPressed: (){Get.back();},)),]),
             ),
             Padding(
               padding: const EdgeInsets.all( 18.0),

@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:panaux_customer/screens/pharmacy/pharmacy_details.dart';
 
+import '../address_screen/address_list_screen.dart';
+
 class PharmacyScreen extends StatefulWidget {
   const PharmacyScreen({Key? key}) : super(key: key);
 
@@ -14,20 +16,31 @@ class _PharmacyScreenState extends State<PharmacyScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-            elevation: 2,
-            backgroundColor: Colors.white,
-            centerTitle: false,
-            title: const Text(
+          elevation: 2,
+          backgroundColor: Colors.white,
+          centerTitle: false,
+          title: GestureDetector(
+            onTap: () {
+              Get.to(const AddressList());
+            },
+            child: const Text(
               'Please choose address',
               style: TextStyle(
                   color: Colors.black,
                   fontWeight: FontWeight.w400,
                   fontSize: 16),
             ),
-            leading: const Icon(
+          ),
+          leading: IconButton(
+            icon: const Icon(
               Icons.map_outlined,
               color: Colors.black,
-            )),
+            ),
+            onPressed: () {
+              Get.to(const AddressList());
+            },
+          ),
+        ),
         body: ListView(
           children: [
             GestureDetector(
