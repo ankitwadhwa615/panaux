@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:panaux_customer/commons/constants.dart';
+import 'package:panaux_customer/screens/doctor_appointment/doctor_appointment.dart';
 import 'package:panaux_customer/screens/pharmacy/pharmacy_screen.dart';
 import 'controllers/homescreen_controller.dart';
 
@@ -35,29 +36,34 @@ class _HomeScreenState extends State<HomeScreen> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               SizedBox(height: Get.height * 0.1),
-              Padding(
-                padding: const EdgeInsets.only(bottom: 25.0),
-                child: Container(
-                  decoration: BoxDecoration(
-                      color: Colors.transparent,
-                      borderRadius: BorderRadius.circular(10),
-                      border: Border.all(color: Colors.black, width: 0.5)),
-                  height: 50,
-                  child: Row(
-                    children: [
-                      Expanded(
-                          flex: 1,
-                          child: Icon(
-                            Icons.calendar_today,
-                            color: primaryColor,
-                          )),
-                      Expanded(
-                          flex: 4,
-                          child: Text(
-                            'Doctor Appointment',
-                            style: TextStyle(color: primaryColor, fontSize: 16),
-                          ))
-                    ],
+              GestureDetector(
+                onTap: (){Get.to(
+                  const DoctorAppointment()
+                );},
+                child: Padding(
+                  padding: const EdgeInsets.only(bottom: 25.0),
+                  child: Container(
+                    decoration: BoxDecoration(
+                        color: Colors.transparent,
+                        borderRadius: BorderRadius.circular(10),
+                        border: Border.all(color: Colors.black, width: 0.5)),
+                    height: 50,
+                    child: Row(
+                      children: [
+                        Expanded(
+                            flex: 1,
+                            child: Icon(
+                              Icons.calendar_today,
+                              color: primaryColor,
+                            )),
+                        Expanded(
+                            flex: 4,
+                            child: Text(
+                              'Doctor Appointment',
+                              style: TextStyle(color: primaryColor, fontSize: 16),
+                            ))
+                      ],
+                    ),
                   ),
                 ),
               ),
