@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
+import 'doctor_profile.dart';
 class DoctorsList extends StatefulWidget {
   const DoctorsList({Key? key}) : super(key: key);
 
@@ -43,69 +43,23 @@ class _DoctorsListState extends State<DoctorsList> {
                 SizedBox(
                   height: Get.height-100,
                   child: ListView(children: [
-                    Padding(
-                      padding: const EdgeInsets.only(bottom: 15.0),
-                      child: SizedBox(
-                        height:80,
-                        child: Row(children: [
-                          const CircleAvatar(
-                            backgroundImage: AssetImage('assets/images/doc.jpg'),
-                            radius: 35,
-                          ),
-                          const SizedBox(
-                            width: 20,
-                          ),
-                          Column(crossAxisAlignment: CrossAxisAlignment.start,
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: const [
-                            Text(
-                              'Dr Rachana',
-                              style: TextStyle(
-                                  fontSize: 15,
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.w400),
+                    GestureDetector(
+                      onTap:(){Get.to(const DoctorProfile());},
+                      child: Padding(
+                        padding: const EdgeInsets.only(bottom: 15.0),
+                        child: SizedBox(
+                          height:80,
+                          child: Row(children: [
+                            const CircleAvatar(
+                              backgroundImage: AssetImage('assets/images/doc.jpg'),
+                              radius: 35,
                             ),
-                              Text(
-                                'MS(Allopathy)',
-                                style: TextStyle(
-                                    fontSize: 13,
-                                    color: Colors.black54,
-                                    fontWeight: FontWeight.w400),
-                              ),
-                              Text(
-                                'ahgd6sfiu478r6w487uifw87we487',
-                                style: TextStyle(
-                                    fontSize: 13,
-                                    color: Colors.black,
-                                    fontWeight: FontWeight.w400),
-                              ),
-                            Text(
-                              '12 years experience',
-                              style: TextStyle(
-                                  color: Colors.black54,
-                                  fontSize: 13,
-                                  fontWeight: FontWeight.w400),
+                            const SizedBox(
+                              width: 20,
                             ),
-
-                          ],)
-                        ]),
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(bottom: 15.0),
-                      child: SizedBox(
-                        height:80,
-                        child: Row(children: [
-                          const CircleAvatar(
-                            backgroundImage: AssetImage('assets/images/doc.jpg'),
-                            radius: 35,
-                          ),
-                          const SizedBox(
-                            width: 20,
-                          ),
-                          Column(crossAxisAlignment: CrossAxisAlignment.start,
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: const [
+                            Column(crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: const [
                               Text(
                                 'Dr Rachana',
                                 style: TextStyle(
@@ -113,20 +67,20 @@ class _DoctorsListState extends State<DoctorsList> {
                                     color: Colors.black,
                                     fontWeight: FontWeight.w400),
                               ),
-                              Text(
-                                'MS(Allopathy)',
-                                style: TextStyle(
-                                    fontSize: 13,
-                                    color: Colors.black54,
-                                    fontWeight: FontWeight.w400),
-                              ),
-                              Text(
-                                'ahgd6sfiu478r6w487uifw87we487',
-                                style: TextStyle(
-                                    fontSize: 13,
-                                    color: Colors.black,
-                                    fontWeight: FontWeight.w400),
-                              ),
+                                Text(
+                                  'MS(Allopathy)',
+                                  style: TextStyle(
+                                      fontSize: 13,
+                                      color: Colors.black54,
+                                      fontWeight: FontWeight.w400),
+                                ),
+                                Text(
+                                  'ahgd6sfiu478r6w487uifw87we487',
+                                  style: TextStyle(
+                                      fontSize: 13,
+                                      color: Colors.black,
+                                      fontWeight: FontWeight.w400),
+                                ),
                               Text(
                                 '12 years experience',
                                 style: TextStyle(
@@ -136,55 +90,110 @@ class _DoctorsListState extends State<DoctorsList> {
                               ),
 
                             ],)
-                        ]),
+                          ]),
+                        ),
                       ),
                     ),
-                    Padding(
-                      padding: const EdgeInsets.only(bottom: 15.0),
-                      child: SizedBox(
-                        height:80,
-                        child: Row(children: [
-                          const CircleAvatar(
-                            backgroundImage: AssetImage('assets/images/doc.jpg'),
-                            radius: 35,
-                          ),
-                          const SizedBox(
-                            width: 20,
-                          ),
-                          Column(crossAxisAlignment: CrossAxisAlignment.start,
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: const [
-                              Text(
-                                'Dr Rachana',
-                                style: TextStyle(
-                                    fontSize: 15,
-                                    color: Colors.black,
-                                    fontWeight: FontWeight.w400),
-                              ),
-                              Text(
-                                'MS(Allopathy)',
-                                style: TextStyle(
-                                    fontSize: 13,
-                                    color: Colors.black54,
-                                    fontWeight: FontWeight.w400),
-                              ),
-                              Text(
-                                'ahgd6sfiu478r6w487uifw87we487',
-                                style: TextStyle(
-                                    fontSize: 13,
-                                    color: Colors.black,
-                                    fontWeight: FontWeight.w400),
-                              ),
-                              Text(
-                                '12 years experience',
-                                style: TextStyle(
-                                    color: Colors.black54,
-                                    fontSize: 13,
-                                    fontWeight: FontWeight.w400),
-                              ),
+                    GestureDetector(
+                      onTap:(){Get.to(const DoctorProfile());},
+                      child: Padding(
+                        padding: const EdgeInsets.only(bottom: 15.0),
+                        child: SizedBox(
+                          height:80,
+                          child: Row(children: [
+                            const CircleAvatar(
+                              backgroundImage: AssetImage('assets/images/doc.jpg'),
+                              radius: 35,
+                            ),
+                            const SizedBox(
+                              width: 20,
+                            ),
+                            Column(crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: const [
+                                Text(
+                                  'Dr Rachana',
+                                  style: TextStyle(
+                                      fontSize: 15,
+                                      color: Colors.black,
+                                      fontWeight: FontWeight.w400),
+                                ),
+                                Text(
+                                  'MS(Allopathy)',
+                                  style: TextStyle(
+                                      fontSize: 13,
+                                      color: Colors.black54,
+                                      fontWeight: FontWeight.w400),
+                                ),
+                                Text(
+                                  'ahgd6sfiu478r6w487uifw87we487',
+                                  style: TextStyle(
+                                      fontSize: 13,
+                                      color: Colors.black,
+                                      fontWeight: FontWeight.w400),
+                                ),
+                                Text(
+                                  '12 years experience',
+                                  style: TextStyle(
+                                      color: Colors.black54,
+                                      fontSize: 13,
+                                      fontWeight: FontWeight.w400),
+                                ),
 
-                            ],)
-                        ]),
+                              ],)
+                          ]),
+                        ),
+                      ),
+                    ),
+                    GestureDetector(
+                      onTap:(){Get.to(const DoctorProfile());},
+                      child: Padding(
+                        padding: const EdgeInsets.only(bottom: 15.0),
+                        child: SizedBox(
+                          height:80,
+                          child: Row(children: [
+                            const CircleAvatar(
+                              backgroundImage: AssetImage('assets/images/doc.jpg'),
+                              radius: 35,
+                            ),
+                            const SizedBox(
+                              width: 20,
+                            ),
+                            Column(crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: const [
+                                Text(
+                                  'Dr Rachana',
+                                  style: TextStyle(
+                                      fontSize: 15,
+                                      color: Colors.black,
+                                      fontWeight: FontWeight.w400),
+                                ),
+                                Text(
+                                  'MS(Allopathy)',
+                                  style: TextStyle(
+                                      fontSize: 13,
+                                      color: Colors.black54,
+                                      fontWeight: FontWeight.w400),
+                                ),
+                                Text(
+                                  'ahgd6sfiu478r6w487uifw87we487',
+                                  style: TextStyle(
+                                      fontSize: 13,
+                                      color: Colors.black,
+                                      fontWeight: FontWeight.w400),
+                                ),
+                                Text(
+                                  '12 years experience',
+                                  style: TextStyle(
+                                      color: Colors.black54,
+                                      fontSize: 13,
+                                      fontWeight: FontWeight.w400),
+                                ),
+
+                              ],)
+                          ]),
+                        ),
                       ),
                     ),
                   ]),
