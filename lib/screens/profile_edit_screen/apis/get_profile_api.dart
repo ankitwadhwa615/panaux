@@ -5,28 +5,22 @@ import 'package:flutter/foundation.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:hive/hive.dart';
 import 'package:panaux_customer/commons/api_constants.dart';
-import 'package:panaux_customer/screens/profile_edit_screen/apis/get_profile_api.dart';
 
-Future loginApi({
-  required String email,
-  required String password,
-}) async {
+
+ getUserProfileApi() async {
   var dio = Dio();
   try {
-    var api = API.login;
-    var params = {"email": email, "password": password};
-    var response = await dio.post(
-      api,
-      data: jsonEncode(params),
-    );
-    if (response.data['status'] == "ok") {
-      var box = await Hive.openBox("userBox");
-      box.put('token', response.data['token']);
-      getUserProfileApi();
+    var api = API.userProfileApi;
+    var box = await Hive.openBox("userBox");
+    String token = box.get('token');
+    var options = Options(headers: {"Authorization": "Bearer " + token});
+    var response = await dio.get(api, options: options);
+    if (response.data["status"]== "ok") {
+      var responseData = json.encode(response.data['data']);
+      box.put('userData', responseData);
     } else {
       Fluttertoast.showToast(msg: response.data['message']);
     }
-    return response.data['status'];
   } on DioError catch (e) {
     if (kDebugMode) {
       print(e);

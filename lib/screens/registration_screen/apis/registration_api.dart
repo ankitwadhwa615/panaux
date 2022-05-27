@@ -11,17 +11,19 @@ Future register(
     required String userName,
     required int number,
     required String password,
+      required String bloodGroup
    }) async {
   var dio = Dio();
   try {
     RegistrationController controller=Getx.Get.put(RegistrationController());
-    var api = API.updateProfileApi;
+    var api = API.userProfileApi;
     FormData formData;
     var token = controller.token;
     var options = Options(headers: {"Authorization": "Bearer " + token});
     formData = FormData.fromMap({
       "username" : userName,
       "number" : number,
+      "blood_group":bloodGroup,
       "password" : password
     });
     var response = await dio.patch(api, data: formData,options: options);

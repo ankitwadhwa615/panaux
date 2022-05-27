@@ -149,7 +149,7 @@ class _BasicDetailsState extends State<BasicDetails> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     TextFields(
-                      controller: controller.ownerName,
+                      controller: controller.userName,
                       title: 'User Name',
                       type: TextInputType.name,
                       prefixIcon: Icons.person,

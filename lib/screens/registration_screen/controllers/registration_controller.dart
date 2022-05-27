@@ -1,8 +1,5 @@
-import 'package:fluttertoast/fluttertoast.dart';
-import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:panaux_customer/commons/constants.dart';
 import 'package:panaux_customer/screens/login/login_screen.dart';
 import 'package:panaux_customer/screens/registration_screen/apis/email_verification_api.dart';
@@ -17,41 +14,32 @@ class RegistrationController extends GetxController {
   TextEditingController password = TextEditingController();
   TextEditingController confirmPassword = TextEditingController();
   TextEditingController userName = TextEditingController();
-
-  TextEditingController address = TextEditingController();
-  RxString lat = ''.obs;
-  RxString long = ''.obs;
+  // RxString lat = ''.obs;
+  // RxString long = ''.obs;
   RxString bloodGroup = '---- Select ----'.obs;
-  TextEditingController city = TextEditingController();
-  TextEditingController state = TextEditingController();
-  TextEditingController country = TextEditingController();
-  TextEditingController pinCode = TextEditingController();
-  TextEditingController manualAddress = TextEditingController();
-  TextEditingController openingTime = TextEditingController();
-  TextEditingController closingTime = TextEditingController();
-  TextEditingController wallet = TextEditingController();
-  RxInt selectedRadio = 0.obs;
-  XFile? profileImage;
-  XFile? storeImage;
+
+
+
   String otp='';
-  Future getCurrentLocation() async {
-    await Geolocator.requestPermission();
-    try {
-      loading.value = true;
-      Position? position;
-      position = await GeolocatorPlatform.instance.getCurrentPosition();
-      lat.value = position.latitude.toString();
-      long.value = position.longitude.toString();
-      loading.value = false;
-    } catch (e) {
-      loading.value = false;
-      Fluttertoast.showToast(msg: "Error in getting location");
-    }
-  }
+  // Future getCurrentLocation() async {
+  //   await Geolocator.requestPermission();
+  //   try {
+  //     loading.value = true;
+  //     Position? position;
+  //     position = await GeolocatorPlatform.instance.getCurrentPosition();
+  //     lat.value = position.latitude.toString();
+  //     long.value = position.longitude.toString();
+  //     loading.value = false;
+  //   } catch (e) {
+  //     loading.value = false;
+  //     Fluttertoast.showToast(msg: "Error in getting location");
+  //   }
+  // }
 
   signUp() async {
     loading.value = true;
     String status = await register(
+      bloodGroup: bloodGroup.value,
       userName: userName.text,
       number: int.parse(phoneNumber.text),
       password: password.text,

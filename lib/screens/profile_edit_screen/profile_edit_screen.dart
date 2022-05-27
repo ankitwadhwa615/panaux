@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:panaux_customer/commons/constants.dart';
@@ -19,7 +18,7 @@ class ProfileEditScreen extends StatefulWidget {
 class _ProfileEditScreenState extends State<ProfileEditScreen> {
   @override
   void initState() {
-    // controller.setInitials();
+    controller.setInitials();
     super.initState();
   }
 
@@ -77,14 +76,9 @@ class _ProfileEditScreenState extends State<ProfileEditScreen> {
             padding: const EdgeInsets.all(8.0),
             child: GestureDetector(
               onTap: () {
-                // if (controllers.basicFormKey.currentState!.validate() &&
-                //     controllers.addressFormKey.currentState!.validate()) {
-                if (controller.lat.value == '' || controller.long.value == '') {
-                  Fluttertoast.showToast(msg: "Please enter Coordinates");
-                } else {
-                  controller.updateProfile();
-                }
-                // }
+                    if(controller.basicFormKey.currentState!.validate()){
+                      controller.updateProfile();
+                    }
               },
               child: Container(
                 height: 45,
