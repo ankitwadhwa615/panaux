@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:panaux_customer/commons/constants.dart';
+import 'package:panaux_customer/screens/doctor_appointment/controllers/doctor_appointment_controller.dart';
 import 'doctor_profile.dart';
 import 'doctors_list.dart';
 
@@ -12,6 +13,14 @@ class DoctorAppointment extends StatefulWidget {
 }
 
 class _DoctorAppointmentState extends State<DoctorAppointment> {
+  @override
+  void initState() {
+    controller.getDoctorsList();
+    super.initState();
+  }
+
+  DoctorAppointmentController controller =
+      Get.put(DoctorAppointmentController());
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -273,196 +282,85 @@ class _DoctorAppointmentState extends State<DoctorAppointment> {
                 const SizedBox(
                   height: 10,
                 ),
-                SizedBox(
-                  height:220,
-                  width: Get.width,
-                  child: ListView(
-                    scrollDirection: Axis.horizontal,
-                    children: [
-                       Padding(
-                          padding: const EdgeInsets.only(right: 15.0),
-                          child: Container(
-                            decoration: BoxDecoration(
-                                border: Border.all(color: Colors.black, width: 0.7),
-                                color: Colors.transparent,
-                                borderRadius: BorderRadius.circular(20)),
-                            width: 160,
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                const CircleAvatar(
-                                  backgroundImage:
-                                      AssetImage('assets/images/doc.jpg'),
-                                  radius: 35,
-                                ),
-                                const Padding(
-                                  padding: EdgeInsets.all(8.0),
-                                  child: Text(
-                                    'Dr Rachana',
-                                    style: TextStyle(
-                                        fontSize: 16,
-                                        color: Colors.black,
-                                        fontWeight: FontWeight.w400),
+                Obx(
+                  () => controller.gettingDoctors.value
+                      ? const SizedBox()
+                      : SizedBox(
+                          height: 220,
+                          width: Get.width,
+                          child: ListView.builder(
+                              scrollDirection: Axis.horizontal,
+                              itemCount: controller.doctorsList.length,
+                              itemBuilder: (BuildContext context, int index) {
+                                return Padding(
+                                  padding: const EdgeInsets.only(right: 15.0),
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                        border: Border.all(
+                                            color: Colors.black, width: 0.7),
+                                        color: Colors.transparent,
+                                        borderRadius:
+                                            BorderRadius.circular(20)),
+                                    width: 160,
+                                    child: Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.center,
+                                      children: [
+                                         CircleAvatar(
+                                          backgroundImage: NetworkImage(
+                                              controller.doctorsList[index].profilePicture??""),
+                                          radius: 35,    backgroundColor: Colors.black,
+                                        ),
+                                         Padding(
+                                          padding: const EdgeInsets.all(8.0),
+                                          child: Text(
+                                              controller.doctorsList[index].name??"",
+                                            style: const TextStyle(
+                                                fontSize: 16,
+                                                color: Colors.black,
+                                                fontWeight: FontWeight.w400),
+                                          ),
+                                        ),
+                                         Text(
+                                          'Specialist: ${controller.doctorsList[index].speciality??""}',
+                                          style: const TextStyle(
+                                              color: Colors.black54,
+                                              fontSize: 13,
+                                              fontWeight: FontWeight.w400),
+                                        ),
+                                         Text(
+                                          'Description:  ${controller.doctorsList[index].description??""}',
+                                          style: const TextStyle(
+                                              fontSize: 13,
+                                              color: Colors.black54,
+                                              fontWeight: FontWeight.w400),
+                                        ),
+                                        const Padding(
+                                          padding: EdgeInsets.all(8.0),
+                                          child: Divider(
+                                            thickness: 0.7,
+                                            color: Colors.black,
+                                          ),
+                                        ),
+                                        GestureDetector(
+                                          onTap: () {
+                                            Get.to( DoctorProfile(data: controller.doctorsList[index],));
+                                          },
+                                          child: const Text(
+                                            'View Profile',
+                                            style: TextStyle(
+                                                color: Colors.black,
+                                                fontWeight: FontWeight.w400),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
                                   ),
-                                ),
-                                const Text(
-                                  'Specialist: Cardiologist',
-                                  style: TextStyle(
-                                      color: Colors.black54,
-                                      fontSize: 13,
-                                      fontWeight: FontWeight.w400),
-                                ),
-                                const Text(
-                                  'Description: Allopathy',
-                                  style:  TextStyle(
-                                      fontSize: 13,
-                                      color: Colors.black54,
-                                      fontWeight: FontWeight.w400),
-                                ),
-                                const Padding(
-                                  padding: EdgeInsets.all(8.0),
-                                  child: Divider(
-                                    thickness: 0.7,
-                                    color: Colors.black,
-                                  ),
-                                ),
-                              GestureDetector(
-                                onTap:(){Get.to(const DoctorProfile());},
-                                child:
-                                const Text(
-                                  'View Profile',
-                                  style: TextStyle(
-                                      color: Colors.black,
-                                      fontWeight: FontWeight.w400),
-                                ),),
-                              ],
-                            ),
-                          ),
+                                );
+                              }),
                         ),
-                      Padding(
-                        padding: const EdgeInsets.only(right: 15.0),
-                        child: Container(
-                          decoration: BoxDecoration(
-                              border: Border.all(color: Colors.black, width: 0.7),
-                              color: Colors.transparent,
-                              borderRadius: BorderRadius.circular(20)),
-                          width: 160,
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              const CircleAvatar(
-                                backgroundImage:
-                                AssetImage('assets/images/doc.jpg'),
-                                radius: 35,
-                              ),
-                              const Padding(
-                                padding: EdgeInsets.all(8.0),
-                                child: Text(
-                                  'Dr Rachana',
-                                  style: TextStyle(
-                                      fontSize: 16,
-                                      color: Colors.black,
-                                      fontWeight: FontWeight.w400),
-                                ),
-                              ),
-                              const Text(
-                                'Specialist: Cardiologist',
-                                style: TextStyle(
-                                    color: Colors.black54,
-                                    fontSize: 13,
-                                    fontWeight: FontWeight.w400),
-                              ),
-                              const Text(
-                                'Description: Allopathy',
-                                style:  TextStyle(
-                                    fontSize: 13,
-                                    color: Colors.black54,
-                                    fontWeight: FontWeight.w400),
-                              ),
-                              const Padding(
-                                padding: EdgeInsets.all(8.0),
-                                child: Divider(
-                                  thickness: 0.7,
-                                  color: Colors.black,
-                                ),
-                              ),
-                              GestureDetector(
-                                onTap:(){Get.to(const DoctorProfile());},
-                                child:
-                                const Text(
-                                  'View Profile',
-                                  style: TextStyle(
-                                      color: Colors.black,
-                                      fontWeight: FontWeight.w400),
-                                ),),
-                            ],
-                          ),
-                        ),
-                      ),  Padding(
-                        padding: const EdgeInsets.only(right: 15.0),
-                        child: Container(
-                          decoration: BoxDecoration(
-                              border: Border.all(color: Colors.black, width: 0.7),
-                              color: Colors.transparent,
-                              borderRadius: BorderRadius.circular(20)),
-                          width: 160,
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              const CircleAvatar(
-                                backgroundImage:
-                                AssetImage('assets/images/doc.jpg'),
-                                radius: 35,
-                              ),
-                              const Padding(
-                                padding: EdgeInsets.all(8.0),
-                                child: Text(
-                                  'Dr Rachana',
-                                  style: TextStyle(
-                                      fontSize: 16,
-                                      color: Colors.black,
-                                      fontWeight: FontWeight.w400),
-                                ),
-                              ),
-                              const Text(
-                                'Specialist: Cardiologist',
-                                style: TextStyle(
-                                    color: Colors.black54,
-                                    fontSize: 13,
-                                    fontWeight: FontWeight.w400),
-                              ),
-                              const Text(
-                                'Description: Allopathy',
-                                style:  TextStyle(
-                                    fontSize: 13,
-                                    color: Colors.black54,
-                                    fontWeight: FontWeight.w400),
-                              ),
-                              const Padding(
-                                padding: EdgeInsets.all(8.0),
-                                child: Divider(
-                                  thickness: 0.7,
-                                  color: Colors.black,
-                                ),
-                              ),
-                              GestureDetector(
-                                onTap:(){Get.to(const DoctorProfile());},
-                                child:
-                                const Text(
-                                  'View Profile',
-                                  style: TextStyle(
-                                      color: Colors.black,
-                                      fontWeight: FontWeight.w400),
-                                ),),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
                 ),
               ]),
         ),
