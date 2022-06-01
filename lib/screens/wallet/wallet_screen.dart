@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 // import 'package:intl/intl.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:panaux_customer/commons/constants.dart';
@@ -90,7 +91,7 @@ class _WalletScreenState extends State<WalletScreen> {
                               mainAxisAlignment: MainAxisAlignment.start,
                               children: [
                                 Text(
-                                  "₹${controller.balance.value.availableBalance.toString()}",
+                                  "₹${controller.balance.value.balance.toString()}",
                                   style: const TextStyle(
                                       color: Colors.black,
                                       fontSize: 20,
@@ -146,320 +147,320 @@ class _WalletScreenState extends State<WalletScreen> {
                               fontWeight: FontWeight.w400),
                         ),
                       ),
-                      ListView(
-                      shrinkWrap: true,
-                        physics: const NeverScrollableScrollPhysics(),
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.all(3.0),
-                            child: Column(
-                              children: [
-                                SizedBox(
-                                  height: 50,
-                                  width: Get.width,
-                                  child: Row(
-                                    children: [
-                                      Expanded(
-                                        flex:3,
-                                        child: SizedBox(
-                                          height: 40,
-                                          width: 40,
-                                          child: Image.asset(
-                                            'assets/images/wallet.png',
-                                          ),
-                                        ),
-                                      ),
-                                      Expanded(
-                                        flex: 5,
-                                        child: Column(
-                                          crossAxisAlignment: CrossAxisAlignment.start,
-                                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                          children: const [
-                                            Flexible(child: Text('order_JRXsfsbfsdbfgsdufguflvkn',style: TextStyle(color: Colors.black,fontSize: 13),),),
-                                            Text('05 May 2022 05:20',style: TextStyle(color: Colors.black54,fontSize: 12),)
-                                          ],
-                                        ),
-                                      ),
-                                      Expanded(
-                                        flex: 4,
-                                        child: Column(
-                                          children: const [
-                                            Text('233.00 ₹',style: TextStyle(color: Colors.black,fontSize: 18),),
-                                            Text('Deposite',style: TextStyle(color: Colors.green,fontSize: 18),)
-                                          ],
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                                const Divider(
-                                )
-                              ],
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(3.0),
-                            child: Column(
-                              children: [
-                                SizedBox(
-                                  height: 50,
-                                  width: Get.width,
-                                  child: Row(
-                                    children: [
-                                      Expanded(
-                                        flex:3,
-                                        child: SizedBox(
-                                          height: 40,
-                                          width: 40,
-                                          child: Image.asset(
-                                            'assets/images/wallet.png',
-                                          ),
-                                        ),
-                                      ),
-                                      Expanded(
-                                        flex: 5,
-                                        child: Column(
-                                          crossAxisAlignment: CrossAxisAlignment.start,
-                                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                          children: const [
-                                            Flexible(child: Text('order_JRXsfsbfsdbfgsdufguflvkn',style: TextStyle(color: Colors.black,fontSize: 13),),),
-                                            Text('05 May 2022 05:20',style: TextStyle(color: Colors.black54,fontSize: 12),)
-                                          ],
-                                        ),
-                                      ),
-                                      Expanded(
-                                        flex: 4,
-                                        child: Column(
-                                          children: const [
-                                            Text('233.00 ₹',style: TextStyle(color: Colors.black,fontSize: 18),),
-                                            Text('Deposite',style: TextStyle(color: Colors.green,fontSize: 18),)
-                                          ],
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                                const Divider(
-                                )
-                              ],
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(3.0),
-                            child: Column(
-                              children: [
-                                SizedBox(
-                                  height: 50,
-                                  width: Get.width,
-                                  child: Row(
-                                    children: [
-                                      Expanded(
-                                        flex:3,
-                                        child: SizedBox(
-                                          height: 40,
-                                          width: 40,
-                                          child: Image.asset(
-                                            'assets/images/wallet.png',
-                                          ),
-                                        ),
-                                      ),
-                                      Expanded(
-                                        flex: 5,
-                                        child: Column(
-                                          crossAxisAlignment: CrossAxisAlignment.start,
-                                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                          children: const [
-                                            Flexible(child: Text('order_JRXsfsbfsdbfgsdufguflvkn',style: TextStyle(color: Colors.black,fontSize: 13),),),
-                                            Text('05 May 2022 05:20',style: TextStyle(color: Colors.black54,fontSize: 12),)
-                                          ],
-                                        ),
-                                      ),
-                                      Expanded(
-                                        flex: 4,
-                                        child: Column(
-                                          children: const [
-                                            Text('233.00 ₹',style: TextStyle(color: Colors.black,fontSize: 18),),
-                                            Text('Deposite',style: TextStyle(color: Colors.green,fontSize: 18),)
-                                          ],
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                                const Divider(
-                                )
-                              ],
-                            ),
-                          ),
+//                      ListView(
+//                      shrinkWrap: true,
+//                        physics: const NeverScrollableScrollPhysics(),
+//                        children: [
+//                          Padding(
+//                            padding: const EdgeInsets.all(3.0),
+//                            child: Column(
+//                              children: [
+//                                SizedBox(
+//                                  height: 50,
+//                                  width: Get.width,
+//                                  child: Row(
+//                                    children: [
+//                                      Expanded(
+//                                        flex:3,
+//                                        child: SizedBox(
+//                                          height: 40,
+//                                          width: 40,
+//                                          child: Image.asset(
+//                                            'assets/images/wallet.png',
+//                                          ),
+//                                        ),
+//                                      ),
+//                                      Expanded(
+//                                        flex: 5,
+//                                        child: Column(
+//                                          crossAxisAlignment: CrossAxisAlignment.start,
+//                                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+//                                          children: const [
+//                                            Flexible(child: Text('order_JRXsfsbfsdbfgsdufguflvkn',style: TextStyle(color: Colors.black,fontSize: 13),),),
+//                                            Text('05 May 2022 05:20',style: TextStyle(color: Colors.black54,fontSize: 12),)
+//                                          ],
+//                                        ),
+//                                      ),
+//                                      Expanded(
+//                                        flex: 4,
+//                                        child: Column(
+//                                          children: const [
+//                                            Text('233.00 ₹',style: TextStyle(color: Colors.black,fontSize: 18),),
+//                                            Text('Deposite',style: TextStyle(color: Colors.green,fontSize: 18),)
+//                                          ],
+//                                        ),
+//                                      ),
+//                                    ],
+//                                  ),
+//                                ),
+//                                const Divider(
+//                                )
+//                              ],
+//                            ),
+//                          ),
+//                          Padding(
+//                            padding: const EdgeInsets.all(3.0),
+//                            child: Column(
+//                              children: [
+//                                SizedBox(
+//                                  height: 50,
+//                                  width: Get.width,
+//                                  child: Row(
+//                                    children: [
+//                                      Expanded(
+//                                        flex:3,
+//                                        child: SizedBox(
+//                                          height: 40,
+//                                          width: 40,
+//                                          child: Image.asset(
+//                                            'assets/images/wallet.png',
+//                                          ),
+//                                        ),
+//                                      ),
+//                                      Expanded(
+//                                        flex: 5,
+//                                        child: Column(
+//                                          crossAxisAlignment: CrossAxisAlignment.start,
+//                                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+//                                          children: const [
+//                                            Flexible(child: Text('order_JRXsfsbfsdbfgsdufguflvkn',style: TextStyle(color: Colors.black,fontSize: 13),),),
+//                                            Text('05 May 2022 05:20',style: TextStyle(color: Colors.black54,fontSize: 12),)
+//                                          ],
+//                                        ),
+//                                      ),
+//                                      Expanded(
+//                                        flex: 4,
+//                                        child: Column(
+//                                          children: const [
+//                                            Text('233.00 ₹',style: TextStyle(color: Colors.black,fontSize: 18),),
+//                                            Text('Deposite',style: TextStyle(color: Colors.green,fontSize: 18),)
+//                                          ],
+//                                        ),
+//                                      ),
+//                                    ],
+//                                  ),
+//                                ),
+//                                const Divider(
+//                                )
+//                              ],
+//                            ),
+//                          ),
+//                          Padding(
+//                            padding: const EdgeInsets.all(3.0),
+//                            child: Column(
+//                              children: [
+//                                SizedBox(
+//                                  height: 50,
+//                                  width: Get.width,
+//                                  child: Row(
+//                                    children: [
+//                                      Expanded(
+//                                        flex:3,
+//                                        child: SizedBox(
+//                                          height: 40,
+//                                          width: 40,
+//                                          child: Image.asset(
+//                                            'assets/images/wallet.png',
+//                                          ),
+//                                        ),
+//                                      ),
+//                                      Expanded(
+//                                        flex: 5,
+//                                        child: Column(
+//                                          crossAxisAlignment: CrossAxisAlignment.start,
+//                                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+//                                          children: const [
+//                                            Flexible(child: Text('order_JRXsfsbfsdbfgsdufguflvkn',style: TextStyle(color: Colors.black,fontSize: 13),),),
+//                                            Text('05 May 2022 05:20',style: TextStyle(color: Colors.black54,fontSize: 12),)
+//                                          ],
+//                                        ),
+//                                      ),
+//                                      Expanded(
+//                                        flex: 4,
+//                                        child: Column(
+//                                          children: const [
+//                                            Text('233.00 ₹',style: TextStyle(color: Colors.black,fontSize: 18),),
+//                                            Text('Deposite',style: TextStyle(color: Colors.green,fontSize: 18),)
+//                                          ],
+//                                        ),
+//                                      ),
+//                                    ],
+//                                  ),
+//                                ),
+//                                const Divider(
+//                                )
+//                              ],
+//                            ),
+//                          ),
+//
+//                        ],
+//                      )
+                       ListView.builder(
+                         shrinkWrap: true,
+                         physics: const NeverScrollableScrollPhysics(),
+                         itemCount: controller.walletHistory.length,
+                         itemBuilder: (context, index) {
+                           DateTime date =
+                               controller.walletHistory[index].createdAt;
+                           DateTime parseDate =
+                               DateFormat("yyyy-MM-dd HH:mm:ss.SSS'Z'")
+                                   .parse(date.toString(), true)
+                                   .toLocal();
 
-                        ],
-                      )
-//                       ListView.builder(
-//                         shrinkWrap: true,
-//                         physics: const NeverScrollableScrollPhysics(),
-//                         itemCount: controller.walletHistory.length,
-//                         itemBuilder: (context, index) {
-//                           DateTime date =
-//                               controller.walletHistory[index].createdAt;
-//                           DateTime parseDate =
-//                               DateFormat("yyyy-MM-dd HH:mm:ss.SSS'Z'")
-//                                   .parse(date.toString(), true)
-//                                   .toLocal();
-//
-//                           var dateLocal = parseDate.toLocal();
-//                           var inputDate =
-//                               DateTime.parse(dateLocal.toString());
-//                           var outputFormat =
-//                               DateFormat('dd MMM yyyy hh:mm a');
-//                           var outputDate = outputFormat.format(inputDate);
-//
-// //									var parts = outputDate.split('-');
-// //									var appointDate = parts[0].trim();
-// //									var appointTime = parts[1].trim();
-//
-//                           return Card(
-//                               elevation: 5,
-//                               shape: RoundedRectangleBorder(
-//                                 borderRadius: BorderRadius.circular(15.0),
-//                               ),
-//                               child: Column(
-//                                 children: [
-//                                   Container(
-//                                     height: 35,
-//                                     width: double.infinity,
-//                                     decoration: BoxDecoration(
-//                                         borderRadius:
-//                                             const BorderRadius.only(
-//                                                 topRight:
-//                                                     Radius.circular(15),
-//                                                 topLeft:
-//                                                     Radius.circular(15)),
-//                                         color: primaryColor),
-//                                     child: Center(
-//                                         child: Text(
-//                                       outputDate,
-//                                       style: const TextStyle(
-//                                           color: Colors.white,
-//                                           fontWeight: FontWeight.bold),
-//                                     )),
-//                                   ),
-//                                   Padding(
-//                                     padding: const EdgeInsets.all(8.0),
-//                                     child: Column(
-//                                       children: [
-//                                         Center(
-//                                             child: Text(
-//                                           '₹ ' +
-//                                               controller
-//                                                   .walletHistory[index]
-//                                                   .amount
-//                                                   .toString(),
-//                                           style: const TextStyle(
-//                                               fontSize: 30,
-//                                               fontWeight: FontWeight.bold,
-//                                               color: Colors.black),
-//                                         )),
-//                                         Row(
-//                                           mainAxisAlignment:
-//                                               MainAxisAlignment
-//                                                   .spaceAround,
-//                                           children: [
-//                                             Column(
-//                                               crossAxisAlignment:
-//                                                   CrossAxisAlignment
-//                                                       .start,
-//                                               children: const [
-//                                                 SizedBox(
-//                                                   height: 10,
-//                                                 ),
-//                                                 Text('Id'),
-//                                                 SizedBox(
-//                                                   height: 10,
-//                                                 ),
-//                                                 Text('Email'),
-//                                                 SizedBox(
-//                                                   height: 10,
-//                                                 ),
-//                                                 Text('Transaction Type'),
-//                                                 SizedBox(
-//                                                   height: 10,
-//                                                 ),
-//                                                 Text('Status'),
-//                                               ],
-//                                             ),
-//                                             Column(
-//                                               crossAxisAlignment:
-//                                                   CrossAxisAlignment
-//                                                       .start,
-//                                               children: [
-//                                                 const SizedBox(
-//                                                   height: 10,
-//                                                 ),
-//                                                 Text(
-//                                                   controller
-//                                                       .walletHistory[
-//                                                           index]
-//                                                       .from
-//                                                       .id
-//                                                       .toString(),
-//                                                   style: const TextStyle(
-//                                                       fontWeight:
-//                                                           FontWeight
-//                                                               .bold),
-//                                                 ),
-//                                                 const SizedBox(
-//                                                   height: 10,
-//                                                 ),
-//                                                 Text(
-//                                                     controller
-//                                                         .walletHistory[
-//                                                             index]
-//                                                         .from
-//                                                         .email
-//                                                         .toString(),
-//                                                     style: const TextStyle(
-//                                                         fontWeight:
-//                                                             FontWeight
-//                                                                 .bold)),
-//                                                 const SizedBox(
-//                                                   height: 10,
-//                                                 ),
-//                                                 Text(
-//                                                     controller
-//                                                         .walletHistory[
-//                                                             index]
-//                                                         .transactionType
-//                                                         .toString(),
-//                                                     style: const TextStyle(
-//                                                         fontWeight:
-//                                                             FontWeight
-//                                                                 .bold)),
-//                                                 const SizedBox(
-//                                                   height: 10,
-//                                                 ),
-//                                                 Text(
-//                                                     controller
-//                                                         .walletHistory[
-//                                                             index]
-//                                                         .status,
-//                                                     style: const TextStyle(
-//                                                         color:
-//                                                             Colors.green,
-//                                                         fontWeight:
-//                                                             FontWeight
-//                                                                 .bold)),
-//                                               ],
-//                                             )
-//                                           ],
-//                                         ),
-//                                       ],
-//                                     ),
-//                                   ),
-//                                 ],
-//                               ));
-//                         },
-//                       )
-                      // Image.asset('assets/images/wallet.png')
+                           var dateLocal = parseDate.toLocal();
+                           var inputDate =
+                               DateTime.parse(dateLocal.toString());
+                           var outputFormat =
+                               DateFormat('dd MMM yyyy hh:mm a');
+                           var outputDate = outputFormat.format(inputDate);
+
+ //									var parts = outputDate.split('-');
+ //									var appointDate = parts[0].trim();
+ //									var appointTime = parts[1].trim();
+
+                           return Card(
+                               elevation: 5,
+                               shape: RoundedRectangleBorder(
+                                 borderRadius: BorderRadius.circular(15.0),
+                               ),
+                               child: Column(
+                                 children: [
+                                   Container(
+                                     height: 35,
+                                     width: double.infinity,
+                                     decoration: BoxDecoration(
+                                         borderRadius:
+                                             const BorderRadius.only(
+                                                 topRight:
+                                                     Radius.circular(15),
+                                                 topLeft:
+                                                     Radius.circular(15)),
+                                         color: primaryColor),
+                                     child: Center(
+                                         child: Text(
+                                       outputDate,
+                                       style: const TextStyle(
+                                           color: Colors.white,
+                                           fontWeight: FontWeight.bold),
+                                     )),
+                                   ),
+                                   Padding(
+                                     padding: const EdgeInsets.all(8.0),
+                                     child: Column(
+                                       children: [
+                                         Center(
+                                             child: Text(
+                                           '₹ ' +
+                                               controller
+                                                   .walletHistory[index]
+                                                   .amount
+                                                   .toString(),
+                                           style: const TextStyle(
+                                               fontSize: 30,
+                                               fontWeight: FontWeight.bold,
+                                               color: Colors.black),
+                                         )),
+                                         Row(
+                                           mainAxisAlignment:
+                                               MainAxisAlignment
+                                                   .spaceAround,
+                                           children: [
+                                             Column(
+                                               crossAxisAlignment:
+                                                   CrossAxisAlignment
+                                                       .start,
+                                               children: const [
+                                                 SizedBox(
+                                                   height: 10,
+                                                 ),
+                                                 Text('Id'),
+                                                 SizedBox(
+                                                   height: 10,
+                                                 ),
+                                                 Text('Email'),
+                                                 SizedBox(
+                                                   height: 10,
+                                                 ),
+                                                 Text('Transaction Type'),
+                                                 SizedBox(
+                                                   height: 10,
+                                                 ),
+                                                 Text('Status'),
+                                               ],
+                                             ),
+                                             Column(
+                                               crossAxisAlignment:
+                                                   CrossAxisAlignment
+                                                       .start,
+                                               children: [
+                                                 const SizedBox(
+                                                   height: 10,
+                                                 ),
+                                                 Text(
+                                                   controller
+                                                       .walletHistory[
+                                                           index]
+                                                       .from
+                                                       .id
+                                                       .toString(),
+                                                   style: const TextStyle(
+                                                       fontWeight:
+                                                           FontWeight
+                                                               .bold),
+                                                 ),
+                                                 const SizedBox(
+                                                   height: 10,
+                                                 ),
+                                                 Text(
+                                                     controller
+                                                         .walletHistory[
+                                                             index]
+                                                         .from
+                                                         .email
+                                                         .toString(),
+                                                     style: const TextStyle(
+                                                         fontWeight:
+                                                             FontWeight
+                                                                 .bold)),
+                                                 const SizedBox(
+                                                   height: 10,
+                                                 ),
+                                                 Text(
+                                                     controller
+                                                         .walletHistory[
+                                                             index]
+                                                         .transactionType
+                                                         .toString(),
+                                                     style: const TextStyle(
+                                                         fontWeight:
+                                                             FontWeight
+                                                                 .bold)),
+                                                 const SizedBox(
+                                                   height: 10,
+                                                 ),
+                                                 Text(
+                                                     controller
+                                                         .walletHistory[
+                                                             index]
+                                                         .status,
+                                                     style: const TextStyle(
+                                                         color:
+                                                             Colors.green,
+                                                         fontWeight:
+                                                             FontWeight
+                                                                 .bold)),
+                                               ],
+                                             )
+                                           ],
+                                         ),
+                                       ],
+                                     ),
+                                   ),
+                                 ],
+                               ));
+                         },
+                       )
+                       //Image.asset('assets/images/wallet.png')
                     ],
                   )
                 ],

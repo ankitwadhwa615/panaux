@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
+import 'package:panaux_customer/screens/address_screen/apis/add_address_api.dart';
 import '../apis/update_address_api.dart';
 
 class AddressController extends GetxController {
@@ -31,6 +32,20 @@ class AddressController extends GetxController {
         long: double.parse(long.value),
       );
       asyncCall.value = false;
+  }
+
+  addAddress() async {
+	  asyncCall.value = true;
+	  await addAddressApi(
+		  address: addressLine1.text,
+		  manualAddress: addressLine2.text,
+		  city: city,
+		  state: state,
+		  pinCode: pinCode.text,
+		  country: country,
+		  lat: lat.value,
+		  long:long.value
+	  );
   }
 
   Future getCurrentLocation() async {

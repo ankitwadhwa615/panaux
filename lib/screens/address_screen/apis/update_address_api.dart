@@ -21,7 +21,7 @@ Future editAddressApi(
   var dio = Dio();
   // SignUpResponseModel? signUpResponseModel;
   try {
-    var api = API.userProfileApi;
+    var api = API.editAddressApi;
     FormData formData;
     if (storeImage == null) {
       formData = FormData.fromMap({

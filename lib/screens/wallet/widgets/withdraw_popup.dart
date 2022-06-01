@@ -60,7 +60,7 @@ class _WithdrawalPopupState extends State<WithdrawalPopup> {
                         borderSide:  BorderSide(color: primaryColor),
                       ),
                       prefixIcon: Icon(
-                        Icons.attach_money,
+                        Icons.currency_rupee,
                         color: primaryColor,
                       ),
                     ),

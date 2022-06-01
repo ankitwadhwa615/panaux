@@ -124,7 +124,7 @@ class _AddressScreenState extends State<AddressScreen> {
           ),
           bottomNavigationBar: GestureDetector(
             onTap: () {
-              controller.updateAddress();
+              controller.addAddress();
             },
             child: Padding(
               padding:

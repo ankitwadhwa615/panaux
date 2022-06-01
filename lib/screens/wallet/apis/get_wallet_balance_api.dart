@@ -9,7 +9,7 @@ import 'package:panaux_customer/screens/wallet/models/wallet_balance_model.dart'
 
 Future<WalletBalanceModel> getWalletBalanceApi() async {
   var dio = Dio();
-  WalletBalanceModel data = WalletBalanceModel(totalBalance: 0, availableBalance: 0);
+  WalletBalanceModel data = WalletBalanceModel(balance: 0,);
   try {
     var box = await Hive.openBox('userBox');
     var token = await box.get('token');

@@ -14,15 +14,17 @@ Future withdrawalRequestApi({
 }) async {
   var dio = Dio();
   try {
-    var api = API.withdrawalApi;
-    var params = {"amount": amount, "senderAccountType": "VENDOR"};
+    var api = API.addMoneyToWallet;
+    var params = {"amount": amount};
     var box = await Hive.openBox('userBox');
     var token = await box.get('token');
     var options = Options(headers: {"Authorization": "Bearer " + token});
     var response =
         await dio.post(api, data: jsonEncode(params), options: options);
+
+    print(response);
     if (response.data['status'] == "success") {
-      Fluttertoast.showToast(msg: response.data['message']);
+     // Fluttertoast.showToast(msg: response.data['message']);
       controller.getBalance();
     } else {
       Fluttertoast.showToast(msg: response.data['message']);

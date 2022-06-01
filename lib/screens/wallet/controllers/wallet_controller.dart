@@ -9,7 +9,7 @@ import 'package:panaux_customer/screens/wallet/models/wallet_balance_model.dart'
 class WalletController extends GetxController {
   RxBool loading = false.obs;
   Rx<WalletBalanceModel> balance =
-      WalletBalanceModel(totalBalance: 0, availableBalance: 0).obs;
+      WalletBalanceModel(balance: 0).obs;
   RxList<TransactionDetailsModel> walletHistory =
       <TransactionDetailsModel>[].obs;
   getBalance() async {

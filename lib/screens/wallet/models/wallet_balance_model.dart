@@ -6,20 +6,20 @@ String walletBalanceModelToJson(WalletBalanceModel data) => json.encode(data.toJ
 
 class WalletBalanceModel {
   WalletBalanceModel({
-    required this.totalBalance,
-    required this.availableBalance,
+    required this.balance,
+   // required this.availableBalance,
   });
 
-  var totalBalance;
-  var availableBalance;
+  var balance;
+  //var availableBalance;
 
   factory WalletBalanceModel.fromJson(Map<String, dynamic> json) => WalletBalanceModel(
-    totalBalance: json["total_balance"],
-    availableBalance: json["available_balance"],
+	  balance: json["balance"],
+  //  availableBalance: json["available_balance"],
   );
 
   Map<String, dynamic> toJson() => {
-    "total_balance": totalBalance,
-    "available_balance": availableBalance,
+    "balance": balance,
+   // "available_balance": availableBalance,
   };
 }
