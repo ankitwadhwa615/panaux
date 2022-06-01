@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../commons/constants.dart';
+import 'models/doctor_model.dart';
 import 'new_appointment.dart';
 
 class DoctorProfile extends StatefulWidget {
-  const DoctorProfile({Key? key}) : super(key: key);
+  final DoctorModel data;
+  const DoctorProfile({Key? key,required this.data}) : super(key: key);
 
   @override
   State<DoctorProfile> createState() => _DoctorProfileState();
@@ -39,9 +41,9 @@ class _DoctorProfileState extends State<DoctorProfile> {
                       Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                           crossAxisAlignment: CrossAxisAlignment.start,
-                          children: const [
+                          children:  [
                             Text(
-                              'Dr Rachana',
+                              widget.data.name??'',
                               style: TextStyle(
                                   color: Colors.black,
                                   fontSize: 23,
@@ -49,7 +51,7 @@ class _DoctorProfileState extends State<DoctorProfile> {
                             ),
                             SizedBox(height: 10,),
                             Text(
-                              'MS',
+                              widget.data.qualification??'',
                               style: TextStyle(
                                   color: Colors.black54,
                                   fontSize: 15,
@@ -57,18 +59,19 @@ class _DoctorProfileState extends State<DoctorProfile> {
                             ),
                             SizedBox(height: 10,),
                             Text(
-                              '12 Years Experience',
+                              widget.data.experience??'',
                               style: TextStyle(
                                   color: Colors.black54,
                                   fontSize: 15,
                                   fontWeight: FontWeight.w400),
                             ),
                           ]),
-                      const Padding(
+                      Padding(
                         padding: EdgeInsets.all(18.0),
                         child: CircleAvatar(
-                          backgroundImage: AssetImage('assets/images/doc.jpg'),
-                          radius: 40,
+                          backgroundImage: NetworkImage(
+                              widget.data.profilePicture??""),
+                          radius: 40,backgroundColor: Colors.black,
                         ),
                       ),
                     ]),
@@ -85,8 +88,8 @@ class _DoctorProfileState extends State<DoctorProfile> {
                 const SizedBox(
                   height: 10,
                 ),
-                const Text(
-                  'Test',
+                 Text(
+                  widget.data.description??"",
                   style: TextStyle(
                       color: Colors.black54,
                       fontSize: 15,
@@ -150,16 +153,16 @@ class _DoctorProfileState extends State<DoctorProfile> {
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: const [
+                        children: [
                           Text(
-                            'Consulting Duration: 0',
+                            'Consulting Duration: ${widget.data.commission?.online?.duration}',
                             style: TextStyle(
                                 color: Colors.black,
                                 fontSize: 17,
                                 fontWeight: FontWeight.w500),
                           ),
                           Text(
-                            'Online Fee: 0',
+                            'Online Fee: ${widget.data.commission?.online?.fees}',
                             style: TextStyle(
                                 color: Colors.black,
                                 fontSize: 17,
