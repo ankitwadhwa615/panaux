@@ -16,8 +16,8 @@ class API {
   static String bookingApi = baseUrl + "api/doctor_booking/";
   static String doctorsApi = baseUrl + "api/doctors/";
   static String editAddressApi = baseUrl + "api/clients/address";
-
-
+  static String pharmacyApi = baseUrl + "api/vendors/";
+  static String addOrderApi = baseUrl + "api/order/add_order/";
 
 
 }

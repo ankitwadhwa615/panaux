@@ -6,7 +6,9 @@ import 'package:razorpay_flutter/razorpay_flutter.dart';
 
 
 class PaymentModeScreen extends StatefulWidget {
-  const PaymentModeScreen({Key? key}) : super(key: key);
+  final int fee;
+  final String docId;
+  const PaymentModeScreen({Key? key,required this.fee,required this.docId}) : super(key: key);
 
   @override
   State<PaymentModeScreen> createState() => _PaymentModeScreenState();
@@ -33,7 +35,7 @@ class _PaymentModeScreenState extends State<PaymentModeScreen> {
   void openCheckout() async {
     var options = {
       'key': 'rzp_test_GVJRdB4KaByL9z',
-      'amount': 10000,
+      'amount': widget.fee,
       'name': 'Panaux',
       'description': 'Consultation Fee',
       'retry': {'enabled': true, 'max_count': 1},
@@ -97,9 +99,9 @@ class _PaymentModeScreenState extends State<PaymentModeScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text(
-              'Amount to be paid: 100',
-              style: TextStyle(
+            Text(
+              'Amount to be paid: ${widget.fee}',
+              style: const TextStyle(
                   color: Colors.black,
                   fontSize: 21,
                   fontWeight: FontWeight.w500),
