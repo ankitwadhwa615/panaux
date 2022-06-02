@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
+import 'package:hive/hive.dart';
 import 'package:panaux_customer/screens/address_screen/apis/add_address_api.dart';
+import '../../profile_edit_screen/models/user_profile.dart';
 import '../apis/update_address_api.dart';
 
 class AddressController extends GetxController {
@@ -41,12 +43,23 @@ class AddressController extends GetxController {
 		  manualAddress: addressLine2.text,
 		  city: city,
 		  state: state,
-		  pinCode: pinCode.text,
+		  pinCode: int.parse(pinCode.text.toString()),
 		  country: country,
-		  lat: lat.value,
-		  long:long.value
+		  lat: "00000",
+		  long: "00000"
 	  );
   }
+
+  List<dynamic> addresses = [];
+
+  addressList() async {
+  	asyncCall.value = true;
+    Box? box = await Hive.openBox('userBox');
+    UserProfileModel data = userProfileModelFromJson(box.get('userData'));
+    addresses = data.addressess!;
+    asyncCall.value = false;
+  }
+
 
   Future getCurrentLocation() async {
     await Geolocator.requestPermission();

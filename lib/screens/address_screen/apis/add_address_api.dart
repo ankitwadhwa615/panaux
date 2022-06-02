@@ -13,47 +13,61 @@ Future addAddressApi(
 		required String manualAddress,
 		required String city,
 		required String state,
-		required String pinCode,
+		required int pinCode,
 		required String country,
 		required String lat,
 		required String long,
 		XFile? storeImage}) async {
 	var dio = Dio();
+	FormData formData;
 	// SignUpResponseModel? signUpResponseModel;
 	try {
 		var api = API.editAddressApi;
-		FormData formData;
-		if (storeImage == null) {
-			formData = FormData.fromMap({
-				"addressLine1": address,
-				"addressLine2": manualAddress,
-				"city": city,
-				"state": state,
+
+		var params = {
+			"addressLine1": address.toString(),
+				"addressLine2": manualAddress.toString(),
 				"pincode": pinCode,
-				"country": country,
-				"longitude": long,
-				"latitude": lat,
-			});
-		} else {
-			String storeImageName = storeImage.path.split('/').last;
-			formData = FormData.fromMap({
-				"addressLine1": address,
-				"addressLine2": manualAddress,
-				"city": city,
-				"state": state,
-				"pincode": pinCode,
-				"country": country,
-				"longitude": long,
-				"latitude": lat,
-				'storeImage': await MultipartFile.fromFile(storeImage.path,
-					filename: storeImageName),
-			});
-		}
-		print(formData);
+				"city": city.toString(),
+				"state": state.toString(),
+				"country": country.toString(),
+				"latitude": lat.toString(),
+				"longitude": long.toString(),
+		};
+
+//		if (storeImage == null) {
+//
+//			formData = FormData.fromMap({
+//				"addressLine1": address.toString(),
+//				"addressLine2": manualAddress.toString(),
+//				"pincode": pinCode,
+//				"city": city.toString(),
+//				"state": state.toString(),
+//				"country": country.toString(),
+//				"latitude": lat.toString(),
+//				"longitude": long.toString(),
+//			});
+//
+//			print(formData.fields);
+//		} else {
+//			String storeImageName = storeImage.path.split('/').last;
+//			formData = FormData.fromMap({
+//				"addressLine1": address.toString(),
+//				"addressLine2": manualAddress.toString(),
+//				"city": city.toString(),
+//				"state": state.toString(),
+//				"pincode": pinCode,
+//				"country": country.toString(),
+//				"longitude": long.toString(),
+//				"latitude": lat.toString(),
+//				'storeImage': await MultipartFile.fromFile(storeImage.path,
+//					filename: storeImageName),
+//			});
+//		}
 		var box = await Hive.openBox('userBox');
 		var token = await box.get('token');
-		var options = Options(headers: {"Authorization": "Bearer " + token});
-		var response = await dio.post(api, data: formData, options: options);
+		var options = Options(headers: {"Authorization": "Bearer $token"});
+		var response = await dio.post(api, data: jsonEncode(params), options: options);
 		print(response);
 		if (response.statusCode ==  200 || response.statusCode == 201) {
 			var responseData = json.encode(response.data['data']);
