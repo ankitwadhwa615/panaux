@@ -18,6 +18,7 @@ class API {
   static String editAddressApi = baseUrl + "api/clients/address";
   static String pharmacyApi = baseUrl + "api/vendors/";
   static String addOrderApi = baseUrl + "api/order/add_order/";
-
+  static String getOrdersApi=baseUrl + "api/order/user_order/";
+  static String updateOrdersApi=baseUrl + "api/order/update_orderStatus";
 
 }

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:panaux_customer/commons/constants.dart';
 import 'package:panaux_customer/screens/orders/widgets/appointment_details/appointment_details.dart';
 import 'package:panaux_customer/screens/orders/widgets/order_details/order_details.dart';
+import 'controllers/orders_controller.dart';
 
 class OrdersManagement extends StatefulWidget {
   const OrdersManagement({Key? key}) : super(key: key);
@@ -13,6 +14,7 @@ class OrdersManagement extends StatefulWidget {
 
 class _OrdersManagementState extends State<OrdersManagement>
     with TickerProviderStateMixin {
+  OrdersManagementController controller = Get.put(OrdersManagementController());
   static final List<Widget> _tabs = [
     SizedBox(
       height: 50,
@@ -32,6 +34,11 @@ class _OrdersManagementState extends State<OrdersManagement>
   ];
 
   static final List<Widget> _views = [appointments(), orders()];
+  @override
+  void initState() {
+    controller.getOrdersList();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -71,6 +78,7 @@ class _OrdersManagementState extends State<OrdersManagement>
 }
 
 Widget appointments() {
+  OrdersManagementController controller = Get.put(OrdersManagementController());
   return Padding(
     padding: const EdgeInsets.all(8.0),
     child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
@@ -160,6 +168,7 @@ Widget appointments() {
 }
 
 Widget orders() {
+  OrdersManagementController controller = Get.put(OrdersManagementController());
   return Padding(
     padding: const EdgeInsets.all(8.0),
     child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
@@ -168,50 +177,77 @@ Widget orders() {
         style: TextStyle(
             color: primaryColor, fontSize: 16, fontWeight: FontWeight.w600),
       ),
-      GestureDetector(
-        onTap: () {
-          Get.to(const OrderDetails());
-        },
-        child: Container(
-          height: 105,
-          width: Get.width,
-          color: Colors.transparent,
-          child: Row(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              CircleAvatar(
-                  child: CircleAvatar(
-                      backgroundColor: Colors.white,
-                      radius: 28,
-                      child: SizedBox(
-                        height: 40,
-                        child: Center(
-                            child: Image.asset('assets/images/tablet.png')),
-                      )),
-                  backgroundColor: Colors.black,
-                  radius: 29),
-              const SizedBox(
-                width: 20,
+      Obx(() => controller.gettingOrders.value
+          ? Center(
+              child: CircularProgressIndicator(
+                color: primaryColor,
+                backgroundColor: Colors.black12,
+                strokeWidth: 1.5,
               ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: const [
-                  Text('Order Id : 627cvhghjhbbjhgh547688989bj'),
-                  Text("Pharmacy: Panaux Pharmacy"),
-                  Text("05 May-2022 11:40"),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  Text("status: NEW"),
-                ],
-              ),
-            ],
-          ),
-        ),
-      ),
-      const Divider()
+            )
+          : SizedBox(
+              height: Get.height - 140,
+              child: ListView.builder(
+                  scrollDirection: Axis.vertical,
+                  itemCount: controller.orders.length,
+                  itemBuilder: (BuildContext context, int index) {
+                    return Column(
+                      children: [
+                        GestureDetector(
+                          onTap: () {
+                            Get.to(OrderDetails(
+                              data: controller.orders[index],
+                            ));
+                          },
+                          child: Container(
+                            height: 105,
+                            width: Get.width,
+                            color: Colors.transparent,
+                            child: Row(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                CircleAvatar(
+                                    child: CircleAvatar(
+                                        backgroundColor: Colors.white,
+                                        radius: 28,
+                                        child: SizedBox(
+                                          height: 40,
+                                          child: Center(
+                                              child: Image.asset(
+                                                  'assets/images/tablet.png')),
+                                        )),
+                                    backgroundColor: Colors.black,
+                                    radius: 29),
+                                const SizedBox(
+                                  width: 20,
+                                ),
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceEvenly,
+                                  children: [
+                                    Text(
+                                        'Order Id : ${controller.orders[index].id ?? ""}'),
+                                    Text(
+                                        "Pharmacy: ${controller.orders[index].vendor?.storeName ?? ""}"),
+                                    Text(
+                                        "${controller.orders[index].createdAt ?? ""}"),
+                                    const SizedBox(
+                                      height: 10,
+                                    ),
+                                    Text(
+                                        "status: ${controller.orders[index].status?.toUpperCase() ?? ""}"),
+                                  ],
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                        const Divider()
+                      ],
+                    );
+                  })))
     ]),
   );
 }

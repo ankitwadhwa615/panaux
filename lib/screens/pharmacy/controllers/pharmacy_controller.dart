@@ -10,12 +10,15 @@ class PharmacyController extends GetxController{
   RxBool loading =false.obs;
   getPharmacyList()async{
     pharmacyList=await getPharmacyApi();
+    pharmacyList.sort((a, b) => b.createdAt!.compareTo(a.createdAt!));
     gettingPharmacy.value=false;
   }
+
   XFile? prescription;
   createOrder(String vendorId)async{
     loading.value=true;
     await addOrderApi(prescription: prescription, vendorId: vendorId);
+    getPharmacyList();
     loading.value=false;
   }
 }
