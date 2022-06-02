@@ -172,7 +172,7 @@ class _DoctorProfileState extends State<DoctorProfile> {
                       ),
                       GestureDetector(
                         onTap: () {
-                          Get.to(const NewAppointment());
+                          Get.to( NewAppointment(data: widget.data,));
                         },
                         child: Container(
                           height: 40,

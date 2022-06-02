@@ -2,7 +2,8 @@ class API {
   static String baseUrl = "https://api.panaux.com/";
   static String signup = baseUrl + "api/clients/signup";
   static String login = baseUrl + "api/clients/signin";
-  static String emailVerification = baseUrl + "api/clients/verify_email_register";
+  static String emailVerification = baseUrl +
+      "api/clients/verify_email_register";
   static String forgetPassword = baseUrl + "api/clients/forgotPassword/";
   static String privacyPolicy = baseUrl + "api/privacy_policy/";
   static String faq = baseUrl + "api/faq/";
@@ -15,4 +16,8 @@ class API {
   static String bookingApi = baseUrl + "api/doctor_booking/";
   static String doctorsApi = baseUrl + "api/doctors/";
   static String editAddressApi = baseUrl + "api/clients/address";
+  static String pharmacyApi = baseUrl + "api/vendors/";
+  static String addOrderApi = baseUrl + "api/order/add_order/";
+
+
 }
