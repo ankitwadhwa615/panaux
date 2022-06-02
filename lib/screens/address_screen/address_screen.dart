@@ -97,7 +97,7 @@ class _AddressScreenState extends State<AddressScreen> {
                             style: const TextStyle(fontWeight: FontWeight.w500),
                             onCountryChanged: (value) {
                               setState(() {
-                                controller.country = value;
+                                controller.country = "India";
                               });
                             },
                             onStateChanged: (value) {
