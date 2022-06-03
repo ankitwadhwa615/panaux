@@ -8,6 +8,7 @@ import 'package:panaux_customer/screens/privacy_policy_screen/privacy_policy_scr
 import 'package:panaux_customer/screens/profile_edit_screen/profile_edit_screen.dart';
 import 'package:panaux_customer/screens/update_password/update_password.dart';
 import 'package:panaux_customer/screens/wallet/wallet_screen.dart';
+import '../address_screen/address_list_screen.dart';
 import 'controllers/logout_controller.dart';
 
 class SettingsScreen extends StatefulWidget {
@@ -40,7 +41,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
               Get.to(const ProfileEditScreen());
             }, Icons.insert_drive_file),
             accountsTile('Manage Address', () {
-              Get.to(const AddressScreen());
+	            Get.to(const AddressList());
             }, Icons.location_on),
             accountsTile('Wallet', () {
               Get.to(const WalletScreen());
