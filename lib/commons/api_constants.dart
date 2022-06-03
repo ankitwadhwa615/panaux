@@ -20,5 +20,6 @@ class API {
   static String addOrderApi = baseUrl + "api/order/add_order/";
   static String getOrdersApi=baseUrl + "api/order/user_order/";
   static String updateOrdersApi=baseUrl + "api/order/update_orderStatus";
+  static String getBookingsApi=baseUrl + "api/doctor_booking/userView";
 
 }

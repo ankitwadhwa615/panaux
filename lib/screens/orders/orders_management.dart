@@ -36,6 +36,7 @@ class _OrdersManagementState extends State<OrdersManagement>
   static final List<Widget> _views = [appointments(), orders()];
   @override
   void initState() {
+    controller.getBookingsList();
     controller.getOrdersList();
     super.initState();
   }
@@ -81,89 +82,141 @@ Widget appointments() {
   OrdersManagementController controller = Get.put(OrdersManagementController());
   return Padding(
     padding: const EdgeInsets.all(8.0),
-    child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-      Text(
-        'Refresh',
-        style: TextStyle(
-            color: primaryColor, fontSize: 16, fontWeight: FontWeight.w600),
-      ),
-      GestureDetector(
-        onTap: () {
-          Get.to(const AppointmentDetails());
-        },
-        child: Container(
-          height: 105,
-          width: Get.width,
-          color: Colors.transparent,
+    child: Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        GestureDetector(
+          onTap: () {
+            controller.getBookingsList();
+          },
           child: Row(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              CircleAvatar(
-                  child: const CircleAvatar(
-                      backgroundColor: Colors.white, radius: 38),
-                  backgroundColor: primaryColor,
-                  radius: 40),
-              const SizedBox(
-                width: 20,
-              ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  const Text('Test1'),
-                  const Text("Fever"),
-                  Container(
-                    height: 25,
-                    width: 90,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                        color: Colors.grey.withOpacity(0.3)),
-                    child: const Center(
-                      child: Text('Pending'),
-                    ),
-                  )
-                ],
+              Text(
+                'Refresh',
+                style: TextStyle(
+                    color: primaryColor,
+                    fontSize: 16,
+                    fontWeight: FontWeight.w600),
               ),
               const SizedBox(
-                width: 30,
+                width: 10,
               ),
-              VerticalDivider(
-                thickness: 2,
+              Icon(
+                Icons.refresh,
                 color: primaryColor,
-              ),
-              Column(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Text(
-                    '05:04 PM',
-                    style: TextStyle(
-                        color: primaryColor,
-                        fontSize: 14,
-                        fontWeight: FontWeight.w500),
-                  ),
-                  Text(
-                    "22 May",
-                    style: TextStyle(
-                        color: primaryColor,
-                        fontSize: 14,
-                        fontWeight: FontWeight.w500),
-                  ),
-                  Text(
-                    '2022',
-                    style: TextStyle(
-                        color: primaryColor,
-                        fontSize: 14,
-                        fontWeight: FontWeight.w500),
-                  )
-                ],
-              ),
+                size: 28,
+              )
             ],
           ),
         ),
-      ),
-      const Divider()
-    ]),
+        Obx(
+          () => controller.gettingBookings.value
+              ? Center(
+                  child: CircularProgressIndicator(
+                    color: primaryColor,
+                    backgroundColor: Colors.black12,
+                    strokeWidth: 1.5,
+                  ),
+                )
+              : SizedBox(
+                  height: Get.height - 150,
+                  child: ListView.builder(
+                      scrollDirection: Axis.vertical,
+                      itemCount: controller.bookings.length,
+                      itemBuilder: (BuildContext context, int index) {
+                        return Column(
+                          children: [
+                            GestureDetector(
+                              onTap: () {
+                                Get.to(AppointmentDetails(data: controller.bookings[index],));
+                              },
+                              child: Container(
+                                height: 105,
+                                width: Get.width,
+                                color: Colors.transparent,
+                                child: Row(
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceEvenly,
+                                  children: [
+                                    CircleAvatar(
+                                        child:  CircleAvatar(
+                                          backgroundImage: NetworkImage(controller.bookings[index].doctor?.profilePicture??""),
+                                            backgroundColor: Colors.white,
+                                            radius: 38),
+                                        backgroundColor: primaryColor,
+                                        radius: 40),
+                                    const SizedBox(
+                                      width: 20,
+                                    ),
+                                    Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceEvenly,
+                                      children: [
+                                        Text(controller.bookings[index].doctor?.name??""),
+                                        Text(controller.bookings[index].title??""),
+                                        Container(
+                                          height: 25,
+                                          width: 90,
+                                          decoration: BoxDecoration(
+                                              borderRadius:
+                                                  BorderRadius.circular(10),
+                                              color:
+                                                  Colors.grey.withOpacity(0.3)),
+                                          child:  Center(
+                                            child: Text(controller.bookings[index].status?.toUpperCase()??""),
+                                          ),
+                                        )
+                                      ],
+                                    ),
+                                    const SizedBox(
+                                      width: 30,
+                                    ),
+                                    VerticalDivider(
+                                      thickness: 2,
+                                      color: primaryColor,
+                                    ),
+                                    Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceEvenly,
+                                      children: [
+                                        Text(
+                                          '05:04 PM',
+                                          style: TextStyle(
+                                              color: primaryColor,
+                                              fontSize: 14,
+                                              fontWeight: FontWeight.w500),
+                                        ),
+                                        Text(
+                                          "22 May",
+                                          style: TextStyle(
+                                              color: primaryColor,
+                                              fontSize: 14,
+                                              fontWeight: FontWeight.w500),
+                                        ),
+                                        Text(
+                                          '2022',
+                                          style: TextStyle(
+                                              color: primaryColor,
+                                              fontSize: 14,
+                                              fontWeight: FontWeight.w500),
+                                        )
+                                      ],
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                            const Divider()
+                          ],
+                        );
+                      }),
+                ),
+        ),
+      ],
+    ),
   );
 }
 
@@ -172,10 +225,29 @@ Widget orders() {
   return Padding(
     padding: const EdgeInsets.all(8.0),
     child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-      Text(
-        'Refresh',
-        style: TextStyle(
-            color: primaryColor, fontSize: 16, fontWeight: FontWeight.w600),
+      GestureDetector(
+        onTap: () {
+          controller.getOrdersList();
+        },
+        child: Row(
+          children: [
+            Text(
+              'Refresh',
+              style: TextStyle(
+                  color: primaryColor,
+                  fontSize: 16,
+                  fontWeight: FontWeight.w600),
+            ),
+            const SizedBox(
+              width: 10,
+            ),
+            Icon(
+              Icons.refresh,
+              color: primaryColor,
+              size: 28,
+            )
+          ],
+        ),
       ),
       Obx(() => controller.gettingOrders.value
           ? Center(
@@ -186,7 +258,7 @@ Widget orders() {
               ),
             )
           : SizedBox(
-              height: Get.height - 140,
+              height: Get.height - 150,
               child: ListView.builder(
                   scrollDirection: Axis.vertical,
                   itemCount: controller.orders.length,
