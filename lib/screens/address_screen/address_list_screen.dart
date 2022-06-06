@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:panaux_customer/commons/constants.dart';
+import 'package:panaux_customer/screens/address_screen/edit_address_screen.dart';
 import 'package:panaux_customer/screens/address_screen/google_map_screen.dart';
 import 'controllers/address_controller.dart';
 
@@ -46,7 +47,6 @@ class _AddressListState extends State<AddressList> {
 						padding: const EdgeInsets.all(18.0),
 						child: Column(
 							crossAxisAlignment: CrossAxisAlignment.start,
-							mainAxisAlignment: MainAxisAlignment.start,
 							children: [
 								const Text(
 									'Address List',
@@ -58,28 +58,62 @@ class _AddressListState extends State<AddressList> {
 
 								ListView.builder(
 									shrinkWrap: true,
-									scrollDirection:  Axis.vertical,
+									scrollDirection: Axis.vertical,
 									itemCount: controller.addresses.length,
 									itemBuilder: (context, index) {
-								 return Card(
-									 child: Padding(
-									   padding: const EdgeInsets.all(10.0),
-									   child: Column(
-										 crossAxisAlignment: CrossAxisAlignment.start,
-										 children: [
-											Text(controller.addresses[index]['addressLine1']),
-											Text('AddressLine 2'),
-											Text('Pincode'),
-											Text('City'),
-											Text('State'),
-											Text('Country'),
+										return Card(
+											elevation: 5,
+											child: Padding(
+												padding: const EdgeInsets.all(10.0),
+												child: Row(
 
-										 ],
-									   ),
-									 ),
-								 );
+													mainAxisAlignment: MainAxisAlignment.spaceBetween,
+													children: [
+														Column(
+															crossAxisAlignment: CrossAxisAlignment.start,
+															children: [
+																Text(controller.addresses[index]['addressLine1']),
+																Text(controller.addresses[index]['addressLine2']),
+																Text(controller.addresses[index]['pincode'].toString()),
+																Text(controller.addresses[index]['city']),
+																Text(controller.addresses[index]['state']),
+																Text(controller.addresses[index]['country']),
+															],
+														),
 
-								}),
+														Column(
+															crossAxisAlignment: CrossAxisAlignment.start,
+															children: [
+																InkWell(
+																	onTap: () {
+																		Get.to(EditAddressScreen(), arguments: [
+																			controller.addresses[index]['addressLine1'],
+																			controller.addresses[index]['addressLine2'],
+																			controller.addresses[index]['pincode'],
+																			controller.addresses[index]['country'],
+																			controller.addresses[index]['state'],
+																			controller.addresses[index]['city'],
+
+																		]);
+																	},
+																	child: Icon(Icons.edit)),
+																SizedBox(height: 10,),
+																InkWell(
+																	onTap: () {
+																		controller.addressId =
+																		controller.addresses[index]['_id'];
+																		controller.deleteAddress();
+																	},
+																	child: Icon(Icons.delete)),
+
+
+															],
+														)
+													],
+												),
+											),
+										);
+									}),
 
 //								Align(
 //									alignment: Alignment.center,

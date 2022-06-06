@@ -23,37 +23,48 @@ Future editAddressApi(
   try {
     var api = API.editAddressApi;
     FormData formData;
-    if (storeImage == null) {
-      formData = FormData.fromMap({
-        "addressLine1": address,
-        "addressLine2": manualAddress,
-        "city": city,
-        "state": state,
-        "pincode": pinCode,
-        "country": country,
-        "longitude": long,
-        "latitude": lat,
-      });
-    } else {
-      String storeImageName = storeImage.path.split('/').last;
-      formData = FormData.fromMap({
-        "addressLine1": address,
-        "addressLine2": manualAddress,
-        "city": city,
-        "state": state,
-        "pincode": pinCode,
-        "country": country,
-        "longitude": long,
-        "latitude": lat,
-        'storeImage': await MultipartFile.fromFile(storeImage.path,
-            filename: storeImageName),
-      });
-    }
+    var params = {
+	    "addressLine1": address.toString(),
+	    "addressLine2": manualAddress.toString(),
+	    "pincode": pinCode,
+	    "city": city.toString(),
+	    "state": state.toString(),
+	    "country": country.toString(),
+	    "latitude": lat.toString(),
+	    "longitude": long.toString(),
+    };
+
+//    if (storeImage == null) {
+//      formData = FormData.fromMap({
+//        "addressLine1": address,
+//        "addressLine2": manualAddress,
+//        "city": city,
+//        "state": state,
+//        "pincode": pinCode,
+//        "country": country,
+//        "longitude": long,
+//        "latitude": lat,
+//      });
+//    } else {
+//      String storeImageName = storeImage.path.split('/').last;
+//      formData = FormData.fromMap({
+//        "addressLine1": address,
+//        "addressLine2": manualAddress,
+//        "city": city,
+//        "state": state,
+//        "pincode": pinCode,
+//        "country": country,
+//        "longitude": long,
+//        "latitude": lat,
+//        'storeImage': await MultipartFile.fromFile(storeImage.path,
+//            filename: storeImageName),
+//      });
+//    }
     var box = await Hive.openBox('userBox');
     var token = await box.get('token');
-    var options = Options(headers: {"Authorization": "Bearer " + token});
-    var response = await dio.patch(api, data: formData, options: options);
-    if (response.data['status'] == "OK") {
+    var options = Options(headers: {"Authorization": "Bearer $token"});
+    var response = await dio.patch(api, data: jsonEncode(params), options: options);
+    if (response.statusCode == 201 || response.statusCode == 200) {
       var responseData = json.encode(response.data['data']);
       var box = await Hive.openBox("userBox");
       box.put('userData', responseData);

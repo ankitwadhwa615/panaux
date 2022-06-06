@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:hive/hive.dart';
 import 'package:panaux_customer/screens/address_screen/apis/add_address_api.dart';
 import '../../profile_edit_screen/models/user_profile.dart';
+import '../apis/delete_address_api.dart';
 import '../apis/update_address_api.dart';
 
 class AddressController extends GetxController {
@@ -20,9 +21,13 @@ class AddressController extends GetxController {
   TextEditingController addressLine2 = TextEditingController();
   RxBool loading = true.obs;
   RxBool asyncCall = false.obs;
+  RxBool updating = false.obs;
+
+
+  String addressId = "";
 
   updateAddress() async {
-    asyncCall.value = true;
+    updating.value = true;
       await editAddressApi(
         city: city,
         state: state,
@@ -33,7 +38,7 @@ class AddressController extends GetxController {
         lat: double.parse(lat.value),
         long: double.parse(long.value),
       );
-      asyncCall.value = false;
+      updating.value = false;
   }
 
   addAddress() async {
@@ -48,6 +53,14 @@ class AddressController extends GetxController {
 		  lat: "00000",
 		  long: "00000"
 	  );
+  }
+
+  deleteAddress() async {
+  	asyncCall.value = true;
+  	await deleteAddressApi(
+	    id: addressId
+    );
+  	asyncCall.value = false;
   }
 
   List<dynamic> addresses = [];

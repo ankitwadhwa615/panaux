@@ -68,7 +68,6 @@ Future addAddressApi(
 		var token = await box.get('token');
 		var options = Options(headers: {"Authorization": "Bearer $token"});
 		var response = await dio.post(api, data: jsonEncode(params), options: options);
-		print(response);
 		if (response.statusCode ==  200 || response.statusCode == 201) {
 			var responseData = json.encode(response.data['data']);
 			var box = await Hive.openBox("userBox");

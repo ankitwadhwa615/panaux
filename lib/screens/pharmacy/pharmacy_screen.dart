@@ -31,7 +31,7 @@ class _PharmacyScreenState extends State<PharmacyScreen> {
         centerTitle: false,
         title: GestureDetector(
           onTap: () {
-            Get.to(const AddressList());
+          //  Get.to(const AddressList());
           },
           child: const Text(
             'Please choose address',
