@@ -8,12 +8,15 @@ import 'package:image_picker/image_picker.dart';
 import 'package:panaux_customer/commons/api_constants.dart';
 import 'package:panaux_customer/screens/orders/orders_management.dart';
 
+import '../../orders/controllers/orders_controller.dart';
+
 Future addOrderApi({
   required XFile? prescription,
   required String vendorId,
 }) async {
   var dio = Dio();
   try {
+    OrdersManagementController controller=Getx.Get.put(OrdersManagementController());
     var api = API.addOrderApi;
     FormData formData;
     var box = await Hive.openBox("userBox");
@@ -28,6 +31,7 @@ Future addOrderApi({
     var response = await dio.post(api, data: formData, options: options);
     if (response.data['status'] == "success") {
       Getx.Get.to(const OrdersManagement());
+      controller.getOrdersList();
     } else {
       Fluttertoast.showToast(msg: response.data['message']);
     }

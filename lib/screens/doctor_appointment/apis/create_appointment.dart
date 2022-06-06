@@ -1,42 +1,56 @@
+import 'dart:convert';
 import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:get/get.dart';
 import 'package:hive/hive.dart';
 import 'package:panaux_customer/commons/api_constants.dart';
+import 'package:panaux_customer/screens/orders/orders_management.dart';
 
-Future createAppointment(
-    {
-      required String docId,
-      required String description,
-      required String title,
-      required String paymentType,
-      required String appointmentTime,
-      required String appointmentMode,
-      required int appointmentFees,
-    }) async {
+import '../../orders/controllers/orders_controller.dart';
+
+Future createAppointmentApi({
+  required String docId,
+  required String description,
+  required String title,
+  required String paymentType,
+  required String appointmentTime,
+  required String appointmentMode,
+  required int appointmentFees,
+}) async {
   var dio = Dio();
   try {
+    OrdersManagementController controller=Get.put(OrdersManagementController());
     var api = API.bookingApi;
-    FormData formData;
+    // FormData formData;
     var box = await Hive.openBox('userBox');
     var token = await box.get('token');
     var options = Options(headers: {"Authorization": "Bearer " + token});
-    formData = FormData.fromMap({
+    // formData = FormData.fromMap({
+    //   "doctor": docId,
+    //   "description":description,
+    //   "title": title,
+    //   "paymentType" :paymentType,
+    //   "appointmentTime": appointmentTime,
+    //   "appointmentMode": appointmentMode,
+    //   "appointmentFees": appointmentFees
+    // });
+    // print(formData.fields);
+    var params = {
       "doctor": docId,
-      "description":description,
+      "description": description,
       "title": title,
-      "paymentType" :paymentType,
+      "paymentType": paymentType,
       "appointmentTime": appointmentTime,
       "appointmentMode": appointmentMode,
       "appointmentFees": appointmentFees
-    });
-    var response = await dio.post(api, data: formData,options: options);
-    print(response.statusCode);
-    print(response.data);
+    };
+    var response =
+        await dio.post(api, data: jsonEncode(params), options: options);
     if (response.data['status'] == "success") {
-      print(response.data);
-
+      Get.to(const OrdersManagement());
+      controller.getBookingsList();
     } else {
       Fluttertoast.showToast(msg: response.data['message']);
     }

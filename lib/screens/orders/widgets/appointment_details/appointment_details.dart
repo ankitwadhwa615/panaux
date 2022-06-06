@@ -2,8 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:panaux_customer/commons/constants.dart';
 
+import '../../models/booking_details_model.dart';
+
 class AppointmentDetails extends StatefulWidget {
-  const AppointmentDetails({Key? key}) : super(key: key);
+  final BookingModel data;
+  const AppointmentDetails({Key? key,required this.data}) : super(key: key);
 
   @override
   State<AppointmentDetails> createState() => _AppointmentDetailsState();
@@ -47,8 +50,8 @@ class _AppointmentDetailsState extends State<AppointmentDetails> {
                         const SizedBox(
                           width: 10,
                         ),
-                        const Text(
-                          'Test2',
+                        Text(
+                          widget.data.doctor?.name??"",
                           style: TextStyle(fontSize: 15, fontWeight: FontWeight.w500),
                         )
                       ],
@@ -66,8 +69,8 @@ class _AppointmentDetailsState extends State<AppointmentDetails> {
                         const SizedBox(
                           width: 10,
                         ),
-                        const Text(
-                          'ankitwadhwa615@gmail.com',
+                         Text(
+                          widget.data.doctor?.email??"",
                           style: TextStyle(fontSize: 15, fontWeight: FontWeight.w500),
                         )
                       ],
@@ -81,11 +84,11 @@ class _AppointmentDetailsState extends State<AppointmentDetails> {
                         fontWeight: FontWeight.w700,
                         color: primaryColor),
                   ),
-                  const Padding(
-                    padding: EdgeInsets.all(8.0),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
                     child: Text(
-                      'Fever Fever Description',
-                      style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
+                        widget.data.description??"",
+                      style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
                     ),
                   ),
                   const Divider(),
@@ -108,10 +111,12 @@ class _AppointmentDetailsState extends State<AppointmentDetails> {
                         const SizedBox(
                           width: 10,
                         ),
-                        const Text(
-                          'Appointment Time: 05:04 PM-05 May-2022',
-                          style: TextStyle(fontSize: 15, fontWeight: FontWeight.w500),
-                        )
+                         Flexible(
+                           child: Text(
+                            'Appointment Time: ${widget.data.appointmentTime.toString()}',
+                            style: const TextStyle(fontSize: 15, fontWeight: FontWeight.w500),
+                        ),
+                         )
                       ],
                     ),
                   ),
@@ -128,9 +133,9 @@ class _AppointmentDetailsState extends State<AppointmentDetails> {
                         const SizedBox(
                           width: 10,
                         ),
-                        const Text(
-                          'Booking Date: 16 May-2022',
-                          style: TextStyle(fontSize: 15, fontWeight: FontWeight.w500),
+                         Text(
+                          'Booking Date: ${widget.data.createdAt.toString()}',
+                          style: const TextStyle(fontSize: 15, fontWeight: FontWeight.w500),
                         )
                       ],
                     ),
@@ -147,9 +152,9 @@ class _AppointmentDetailsState extends State<AppointmentDetails> {
                         const SizedBox(
                           width: 10,
                         ),
-                        const Text(
-                          'Booking Type: Direct Appointment (Offline)',
-                          style: TextStyle(fontSize: 15, fontWeight: FontWeight.w500),
+                         Text(
+                          'Booking Type: ${widget.data.appointmentMode}',
+                          style: const TextStyle(fontSize: 15, fontWeight: FontWeight.w500),
                         )
                       ],
                     ),
@@ -159,12 +164,12 @@ class _AppointmentDetailsState extends State<AppointmentDetails> {
                     padding: const EdgeInsets.all(8.0),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: const [
+                      children:  [
                         Text(
-                          'Status: Pending',
-                          style: TextStyle(fontSize: 15, fontWeight: FontWeight.w500),
+                          'Status: ${widget.data.status??""}',
+                          style: const TextStyle(fontSize: 15, fontWeight: FontWeight.w500),
                         ),
-                        Text(
+                        const Text(
                           'Call is not initiated by doctor yet',
                           style: TextStyle(fontSize: 15, fontWeight: FontWeight.w500),
                         ),
