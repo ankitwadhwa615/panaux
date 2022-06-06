@@ -8,14 +8,20 @@ import '../pharmacy/pharmacy_screen.dart';
 import 'home_screen.dart';
 
 class DashBoard extends StatefulWidget {
-  const DashBoard({Key? key}) : super(key: key);
+  final int index;
+  const DashBoard({Key? key,this.index=0}) : super(key: key);
 
   @override
   State<DashBoard> createState() => _DashBoardState();
 }
 
 class _DashBoardState extends State<DashBoard> {
-  int currentIndex = 0;
+  @override
+  void initState() {
+    super.initState();
+    currentIndex=widget.index;
+  }
+  int currentIndex=0;
   static const List<Widget> _pages = <Widget>[
     HomeScreen(),
     PharmacyScreen(),

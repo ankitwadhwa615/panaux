@@ -6,8 +6,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:hive/hive.dart';
 import 'package:panaux_customer/commons/api_constants.dart';
-import 'package:panaux_customer/screens/orders/orders_management.dart';
-
+import 'package:panaux_customer/screens/home_screen/dashboard.dart';
 import '../../orders/controllers/orders_controller.dart';
 
 Future createAppointmentApi({
@@ -49,7 +48,7 @@ Future createAppointmentApi({
     var response =
         await dio.post(api, data: jsonEncode(params), options: options);
     if (response.data['status'] == "success") {
-      Get.to(const OrdersManagement());
+      Get.offAll(const DashBoard(index:2));
       controller.getBookingsList();
     } else {
       Fluttertoast.showToast(msg: response.data['message']);

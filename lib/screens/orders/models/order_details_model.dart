@@ -22,7 +22,7 @@ class OrderDetailsModel {
 
   bool? payment;
   String? status;
-  int? amount;
+  dynamic amount;
   int? totalQuantity;
   String? id;
   Vendor? vendor;
