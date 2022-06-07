@@ -6,6 +6,7 @@ import 'package:panaux_customer/screens/orders/controllers/orders_controller.dar
 import 'package:razorpay_flutter/razorpay_flutter.dart';
 
 
+
 class OrdersPaymentModeScreen extends StatefulWidget {
   final double fee;
   final String id;
@@ -33,17 +34,15 @@ class _OrdersPaymentModeScreenState extends State<OrdersPaymentModeScreen> {
     _razorpay.clear();
   }
 
-  void openCheckout() async {
+  void openCheckout(String orderId) async {
     var options = {
       'key': 'rzp_test_GVJRdB4KaByL9z',
-      'amount': widget.fee,
+      'amount': widget.fee*100,
       'name': 'Panaux',
-      'description': 'Consultation Fee',
+      'description': 'Order Fee',
       'retry': {'enabled': true, 'max_count': 1},
       'send_sms_hash': true,
-      'external': {
-        'wallets': ['paytm']
-      }
+      'order_id':orderId,
     };
 
     try {
@@ -54,7 +53,7 @@ class _OrdersPaymentModeScreenState extends State<OrdersPaymentModeScreen> {
   }
 
   void _handlePaymentSuccess(PaymentSuccessResponse response) {
-    controller.paidOrder(widget.id, "paymentgateway");
+    controller.verifyRazorpayPaidOrder(response.paymentId!,response.orderId!,response.signature!);
     // print('Success Response: $response');
     // Fluttertoast.showToast(
     //     msg: "SUCCESS: " + response.paymentId!,
@@ -110,8 +109,9 @@ class _OrdersPaymentModeScreenState extends State<OrdersPaymentModeScreen> {
             ),
             const SizedBox(height: 40,),
             GestureDetector(
-              onTap: (){
-                openCheckout();
+              onTap: ()async{
+                await controller.razorpayPaidOrder(widget.id);
+                openCheckout(controller.razorpayOrderModel?.id??"");
               },
               child:  Text(
                 '1. Payment Gateway',
@@ -125,7 +125,7 @@ class _OrdersPaymentModeScreenState extends State<OrdersPaymentModeScreen> {
             const SizedBox(height: 10,),
             GestureDetector(
               onTap: (){
-                controller.paidOrder(widget.id, "wallet");
+
               },
               child: Text(
                 '2. Pay using Wallet (Add Money)',

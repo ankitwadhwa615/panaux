@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:panaux_customer/commons/constants.dart';
 import 'package:panaux_customer/screens/orders/widgets/payment_screen.dart';
@@ -55,7 +56,35 @@ class _OrderDetailsState extends State<OrderDetails> {
                         fontSize: 22),
                   ),
                   const SizedBox(
-                    height: 30,
+                    height: 20,
+                  ),
+                  Align(
+                    alignment: Alignment.center,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        const Text(
+                          'Status- ',
+                          style: TextStyle(
+                              color: Colors.black,
+                              fontWeight: FontWeight.w500,
+                              fontSize: 17),
+                        ),
+                        Text(
+                          widget.data.status?.toUpperCase() ?? '',
+                          style: TextStyle(
+                              color: widget.data.status?.toUpperCase() ==
+                                      "CANCELLED"
+                                  ? Colors.red
+                                  : Colors.green,
+                              fontWeight: FontWeight.w500,
+                              fontSize: 17),
+                        ),
+                      ],
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 5,
                   ),
                   Align(
                     alignment: Alignment.center,
@@ -70,7 +99,7 @@ class _OrderDetailsState extends State<OrderDetails> {
                   Align(
                     alignment: Alignment.center,
                     child: Text(
-                      widget.data.createdAt.toString(),
+                      DateFormat('dd MMM yyyy hh:mm a').format(widget.data.createdAt!.toLocal()),
                       style: const TextStyle(
                           color: Colors.grey,
                           fontWeight: FontWeight.w500,
@@ -142,7 +171,7 @@ class _OrderDetailsState extends State<OrderDetails> {
                     ),
                   ),
                   const SizedBox(
-                    height: 50,
+                    height: 10,
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -161,27 +190,30 @@ class _OrderDetailsState extends State<OrderDetails> {
                   const SizedBox(
                     height: 20,
                   ),
-                  MaterialButton(
-                    onPressed: () {
-                      if (widget.data.status?.toUpperCase() == "PROCESSING") {
-                        Get.to(OrdersPaymentModeScreen(
-                          fee: widget.data.amount!,
-                          id: widget.data.id!,
-                        ));
-                      } else {
-                        controller.cancelOrder(widget.data.id!);
-                      }
-                    },
-                    child: Text(
-                      widget.data.status?.toUpperCase() == "PROCESSING"
-                          ? 'PAY NOW'
-                          : 'CANCEL',
-                      style: const TextStyle(color: Colors.white),
-                    ),
-                    color: primaryColor,
-                    height: 40,
-                    minWidth: Get.width,
-                  )
+                  widget.data.status?.toUpperCase() == "CANCELLED"
+                      ? const SizedBox()
+                      : MaterialButton(
+                          onPressed: () {
+                            if (widget.data.status?.toUpperCase() ==
+                                "PROCESSING") {
+                              Get.to(OrdersPaymentModeScreen(
+                                fee: widget.data.amount!,
+                                id: widget.data.id!,
+                              ));
+                            } else {
+                              controller.cancelOrder(widget.data.id!);
+                            }
+                          },
+                          child: Text(
+                            widget.data.status?.toUpperCase() == "PROCESSING"
+                                ? 'PAY NOW'
+                                : 'CANCEL',
+                            style: const TextStyle(color: Colors.white),
+                          ),
+                          color: primaryColor,
+                          height: 40,
+                          minWidth: Get.width,
+                        )
                 ],
               ),
             ),

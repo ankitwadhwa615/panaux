@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:panaux_customer/commons/constants.dart';
 import 'package:panaux_customer/screens/orders/widgets/appointment_details/appointment_details.dart';
 import 'package:panaux_customer/screens/orders/widgets/order_details/order_details.dart';
@@ -46,33 +47,31 @@ class _OrdersManagementState extends State<OrdersManagement>
     return DefaultTabController(
       length: 2,
       child: Scaffold(
-        body: SingleChildScrollView(
-          child: Column(children: [
-            const SizedBox(
-              height: 25,
-            ),
-            TabBar(
-              labelColor: Colors.black,
-              unselectedLabelColor: Colors.grey,
-              labelStyle: const TextStyle(fontWeight: FontWeight.w600),
-              unselectedLabelStyle:
-                  const TextStyle(fontWeight: FontWeight.w600),
-              indicatorWeight: 2,
-              indicatorColor: primaryColor,
-              indicatorSize: TabBarIndicatorSize.label,
-              isScrollable: true,
+        body: Column(children: [
+          const SizedBox(
+            height: 25,
+          ),
+          TabBar(
+            labelColor: Colors.black,
+            unselectedLabelColor: Colors.grey,
+            labelStyle: const TextStyle(fontWeight: FontWeight.w600),
+            unselectedLabelStyle:
+                const TextStyle(fontWeight: FontWeight.w600),
+            indicatorWeight: 2,
+            indicatorColor: primaryColor,
+            indicatorSize: TabBarIndicatorSize.label,
+            isScrollable: true,
+            physics: const BouncingScrollPhysics(),
+            tabs: _tabs,
+          ),
+          SizedBox(
+            height: Get.height - 133,
+            child: TabBarView(
               physics: const BouncingScrollPhysics(),
-              tabs: _tabs,
+              children: _views,
             ),
-            SizedBox(
-              height: Get.height - 100,
-              child: TabBarView(
-                physics: const BouncingScrollPhysics(),
-                children: _views,
-              ),
-            ),
-          ]),
-        ),
+          ),
+        ]),
       ),
     );
   }
@@ -119,7 +118,7 @@ Widget appointments() {
                   ),
                 )
               : SizedBox(
-                  height: Get.height - 150,
+                  height: Get.height-183,
                   child: ListView.builder(
                       scrollDirection: Axis.vertical,
                       itemCount: controller.bookings.length,
@@ -183,21 +182,21 @@ Widget appointments() {
                                           MainAxisAlignment.spaceEvenly,
                                       children: [
                                         Text(
-                                          '05:04 PM',
+                                          DateFormat('hh:mm a').format(controller.bookings[index].createdAt!.toLocal()),
                                           style: TextStyle(
                                               color: primaryColor,
                                               fontSize: 14,
                                               fontWeight: FontWeight.w500),
                                         ),
                                         Text(
-                                          "22 May",
+                                          DateFormat('dd MMM').format(controller.bookings[index].createdAt!.toLocal()),
                                           style: TextStyle(
                                               color: primaryColor,
                                               fontSize: 14,
                                               fontWeight: FontWeight.w500),
                                         ),
                                         Text(
-                                          '2022',
+                                          controller.bookings[index].createdAt!.year.toString(),
                                           style: TextStyle(
                                               color: primaryColor,
                                               fontSize: 14,
@@ -258,7 +257,7 @@ Widget orders() {
               ),
             )
           : SizedBox(
-              height: Get.height - 150,
+              height: Get.height - 183,
               child: ListView.builder(
                   scrollDirection: Axis.vertical,
                   itemCount: controller.orders.length,
@@ -304,7 +303,7 @@ Widget orders() {
                                     Text(
                                         "Pharmacy: ${controller.orders[index].vendor?.storeName ?? ""}"),
                                     Text(
-                                        "${controller.orders[index].createdAt ?? ""}"),
+                                      DateFormat('dd MMM yyyy hh:mm a').format(controller.orders[index].createdAt!.toLocal()),),
                                     const SizedBox(
                                       height: 10,
                                     ),

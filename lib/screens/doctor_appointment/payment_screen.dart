@@ -36,7 +36,7 @@ class _PaymentModeScreenState extends State<PaymentModeScreen> {
   void openCheckout() async {
     var options = {
       'key': 'rzp_test_GVJRdB4KaByL9z',
-      'amount': widget.fee,
+      'amount': widget.fee*100,
       'name': 'Panaux',
       'description': 'Consultation Fee',
       'retry': {'enabled': true, 'max_count': 1},

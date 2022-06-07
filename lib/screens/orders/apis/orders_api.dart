@@ -8,7 +8,7 @@ import 'package:hive/hive.dart';
 import 'package:panaux_customer/commons/api_constants.dart';
 import 'package:panaux_customer/screens/orders/controllers/orders_controller.dart';
 import '../models/order_details_model.dart';
-
+import '../models/razorpay_order_model.dart';
 
 Future<List<OrderDetailsModel>> getOrdersApi() async {
   List<OrderDetailsModel> ordersList = [];
@@ -22,7 +22,8 @@ Future<List<OrderDetailsModel>> getOrdersApi() async {
     if (response.data["status"] == "Success") {
       for (var each in response.data['userOrder']) {
         var responseData = json.encode(each);
-        OrderDetailsModel orderDetails =orderDetailsModelFromJson(responseData);
+        OrderDetailsModel orderDetails =
+            orderDetailsModelFromJson(responseData);
         if (orderDetails.client?.id != null && orderDetails.id != null) {
           ordersList.add(orderDetails);
         }
@@ -41,21 +42,24 @@ Future<List<OrderDetailsModel>> getOrdersApi() async {
   return ordersList;
 }
 
-Future cancelOrderApi(
-    String id
-    ) async {
+Future cancelOrderApi(String id) async {
   var dio = Dio();
   try {
-    OrdersManagementController controller=GetX.Get.put(OrdersManagementController());
+    OrdersManagementController controller =
+        GetX.Get.put(OrdersManagementController());
     var api = API.updateOrdersApi;
     var box = await Hive.openBox("userBox");
     String token = box.get('token');
     var options = Options(headers: {"Authorization": "Bearer " + token});
-    FormData formData = FormData.fromMap({
-      "id" : id,
-      "status" : 'cancelled',
-    });
-    var response = await dio.patch(api, options: options,data: formData);
+    var params = {
+      "_id": id,
+      "status": 'cancelled',
+    };
+    var response = await dio.patch(
+      api,
+      options: options,
+      data: jsonEncode(params),
+    );
     if (response.data["status"] == "success") {
       controller.getOrdersList();
       GetX.Get.back();
@@ -73,29 +77,62 @@ Future cancelOrderApi(
   }
 }
 
-Future paidOrderApi(
+Future<RazorpayOrderModel?> razorpayOrderApi(
     String id,
-    String mode
     ) async {
+  RazorpayOrderModel? razorpayOrderModel;
   var dio = Dio();
   try {
-    OrdersManagementController controller=GetX.Get.put(OrdersManagementController());
     var api = API.updateOrdersApi;
     var box = await Hive.openBox("userBox");
     String token = box.get('token');
     var options = Options(headers: {"Authorization": "Bearer " + token});
-    FormData formData = FormData.fromMap({
-      "id" : id,
-      "status" : 'paid',
-      "paymentMode": mode,
-    });
-    var response = await dio.patch(api, options: options,data: formData);
-    print(formData.fields);
-    print(response.data);
+    var params = {
+      "_id": id,
+      "status": 'paid',
+      "paymentMode": 'paymentgateway',
+    };
+    var response =
+    await dio.patch(api, options: options, data: jsonEncode(params));
     if (response.data["status"] == "success") {
-      controller.getOrdersList();
-      GetX.Get.back();
-      Fluttertoast.showToast(msg: 'Paid Successfully');
+      var responseData = json.encode(response.data["razorpayOrder"]);
+      razorpayOrderModel = razorpayOrderModelFromJson(responseData);
+    } else {
+      Fluttertoast.showToast(msg: response.data['message']);
+    }
+  } on DioError catch (e) {
+    if (kDebugMode) {
+      print(e);
+    }
+    Fluttertoast.showToast(msg: "Something went wrong");
+  } on SocketException {
+    Fluttertoast.showToast(msg: "Please check your internet connection");
+  }
+  return razorpayOrderModel;
+}
+
+Future verifyRazorpayOrderApi(
+    String orderId,
+    String paymentId,
+    String signature
+    ) async {
+  var dio = Dio();
+  try {
+    var api = API.verifyPaymentApi;
+    var box = await Hive.openBox("userBox");
+    String token = box.get('token');
+    var options = Options(headers: {"Authorization": "Bearer " + token});
+    var params = {
+      "razorpay_order_id": orderId,
+      "razorpay_payment_id": paymentId,
+      "razorpay_signature": signature
+    };
+    print(params);
+    var response =
+    await dio.patch(api, options: options, data: jsonEncode(params));
+    if (response.data["status"] == "success") {
+
+
     } else {
       Fluttertoast.showToast(msg: response.data['message']);
     }
