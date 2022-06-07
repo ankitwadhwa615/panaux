@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 import 'package:panaux_customer/commons/constants.dart';
 
 import '../../models/booking_details_model.dart';
@@ -113,7 +114,7 @@ class _AppointmentDetailsState extends State<AppointmentDetails> {
                         ),
                          Flexible(
                            child: Text(
-                            'Appointment Time: ${widget.data.appointmentTime.toString()}',
+                            'Appointment Time: ${ DateFormat('hh:mm a').format(widget.data.appointmentTime!)}',
                             style: const TextStyle(fontSize: 15, fontWeight: FontWeight.w500),
                         ),
                          )
@@ -134,7 +135,7 @@ class _AppointmentDetailsState extends State<AppointmentDetails> {
                           width: 10,
                         ),
                          Text(
-                          'Booking Date: ${widget.data.createdAt.toString()}',
+                          'Booking Date: ${ DateFormat('dd MMM yyyy').format(widget.data.appointmentTime!)}',
                           style: const TextStyle(fontSize: 15, fontWeight: FontWeight.w500),
                         )
                       ],

@@ -3,6 +3,7 @@ import 'package:panaux_customer/screens/orders/apis/bookings_api.dart';
 import '../apis/orders_api.dart';
 import '../models/booking_details_model.dart';
 import '../models/order_details_model.dart';
+import '../models/razorpay_order_model.dart';
 
 class OrdersManagementController extends GetxController{
   RxBool gettingOrders=false.obs;
@@ -13,6 +14,9 @@ class OrdersManagementController extends GetxController{
   getOrdersList()async{
     gettingOrders.value=true;
     orders.value=await getOrdersApi();
+    orders.sort((a,b){
+      return b.createdAt!.compareTo(a.createdAt!);
+    });
     gettingOrders.value=false;
   }
   cancelOrder(String id){
@@ -20,14 +24,23 @@ class OrdersManagementController extends GetxController{
     cancelOrderApi(id);
     loading.value=false;
   }
-  paidOrder(String id,String mode){
+  RazorpayOrderModel? razorpayOrderModel;
+  razorpayPaidOrder(String id)async{
     loading.value=true;
-    paidOrderApi(id,mode);
+    razorpayOrderModel=await razorpayOrderApi(id);
+    loading.value=false;
+  }
+  verifyRazorpayPaidOrder(String paymentId,String orderId,String signature )async{
+    loading.value=true;
+    await verifyRazorpayOrderApi(orderId,paymentId,signature);
     loading.value=false;
   }
   getBookingsList()async{
     gettingBookings.value=true;
     bookings.value=await getBookingsApi();
+    bookings.sort((a,b){
+      return b.createdAt!.compareTo(a.createdAt!);
+    });
     gettingBookings.value=false;
   }
 }

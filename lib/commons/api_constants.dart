@@ -2,8 +2,8 @@ class API {
   static String baseUrl = "https://api.panaux.com/";
   static String signup = baseUrl + "api/clients/signup";
   static String login = baseUrl + "api/clients/signin";
-  static String emailVerification = baseUrl +
-      "api/clients/verify_email_register";
+  static String emailVerification =
+      baseUrl + "api/clients/verify_email_register";
   static String forgetPassword = baseUrl + "api/clients/forgotPassword/";
   static String privacyPolicy = baseUrl + "api/privacy_policy/";
   static String faq = baseUrl + "api/faq/";
@@ -18,8 +18,10 @@ class API {
   static String editAddressApi = baseUrl + "api/clients/address";
   static String pharmacyApi = baseUrl + "api/vendors/";
   static String addOrderApi = baseUrl + "api/order/add_order/";
-  static String getOrdersApi=baseUrl + "api/order/user_order/";
-  static String updateOrdersApi=baseUrl + "api/order/update_orderStatus";
-  static String getBookingsApi=baseUrl + "api/doctor_booking/userView";
-
+  static String getOrdersApi = baseUrl + "api/order/user_order/";
+  static String updateOrdersApi = baseUrl + "api/order/update_orderStatus";
+  static String getBookingsApi = baseUrl + "api/doctor_booking/userView";
+  static String getPrescriptions =
+      baseUrl + "api/client/prescription/clientView/";
+  static String verifyPaymentApi=baseUrl+"api/order/verify_order_payment";
 }
