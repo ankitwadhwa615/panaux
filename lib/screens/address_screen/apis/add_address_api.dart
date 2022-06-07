@@ -7,6 +7,10 @@ import 'package:get/get.dart' as getx;
 import 'package:hive/hive.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:panaux_customer/commons/api_constants.dart';
+import 'package:panaux_customer/screens/address_screen/address_list_screen.dart';
+import 'package:panaux_customer/screens/home_screen/dashboard.dart';
+
+import '../../settings_screen/settings_screen.dart';
 
 Future addAddressApi(
 	{required String address,
@@ -73,7 +77,7 @@ Future addAddressApi(
 			var box = await Hive.openBox("userBox");
 			box.put('userData', responseData);
 			Fluttertoast.showToast(msg: "Added Address Successfully");
-			getx.Get.back();
+			getx.Get.offAll(SettingsScreen());
 		} else {
 			Fluttertoast.showToast(msg: response.data['message']);
 		}

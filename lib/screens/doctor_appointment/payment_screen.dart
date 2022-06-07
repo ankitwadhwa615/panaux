@@ -36,7 +36,7 @@ class _PaymentModeScreenState extends State<PaymentModeScreen> {
   void openCheckout() async {
     var options = {
       'key': 'rzp_test_GVJRdB4KaByL9z',
-      'amount': widget.fee,
+      'amount': widget.fee * 100,
       'name': 'Panaux',
       'description': 'Consultation Fee',
       'retry': {'enabled': true, 'max_count': 1},
@@ -55,7 +55,10 @@ class _PaymentModeScreenState extends State<PaymentModeScreen> {
 
   void _handlePaymentSuccess(PaymentSuccessResponse response) {
     controller.createAppointment(widget.fee, widget.docId, "paymentgateway");
-    // print('Success Response: $response');
+     print('Success Response:'+ response.toString());
+     print('Success Response: '+ response.paymentId.toString());
+     print('Success Response: '+response.orderId.toString());
+     print('Success Response: '+response.signature.toString());
     // Fluttertoast.showToast(
     //     msg: "SUCCESS: " + response.paymentId!,
     //     toastLength: Toast.LENGTH_SHORT);

@@ -46,8 +46,10 @@ Future createAppointmentApi({
       "appointmentMode": appointmentMode,
       "appointmentFees": appointmentFees
     };
+
     var response =
         await dio.post(api, data: jsonEncode(params), options: options);
+    print(response.data);
     if (response.data['status'] == "success") {
       Get.to(const OrdersManagement());
       controller.getBookingsList();

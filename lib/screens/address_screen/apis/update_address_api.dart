@@ -8,6 +8,8 @@ import 'package:hive/hive.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:panaux_customer/commons/api_constants.dart';
 
+import '../../settings_screen/settings_screen.dart';
+
 Future editAddressApi(
     {required String address,
     required String manualAddress,
@@ -66,10 +68,11 @@ Future editAddressApi(
     var response = await dio.patch(api, data: jsonEncode(params), options: options);
     if (response.statusCode == 201 || response.statusCode == 200) {
       var responseData = json.encode(response.data['data']);
+      print("responsedata"+responseData);
       var box = await Hive.openBox("userBox");
       box.put('userData', responseData);
       Fluttertoast.showToast(msg: "Updated Address Successfully");
-      getx.Get.back();
+      getx.Get.offAll(SettingsScreen());
     } else {
       Fluttertoast.showToast(msg: response.data['message']);
     }
