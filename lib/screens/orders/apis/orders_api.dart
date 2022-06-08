@@ -4,11 +4,13 @@ import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart' as GetX;
+import 'package:get/get.dart';
 import 'package:hive/hive.dart';
 import 'package:panaux_customer/commons/api_constants.dart';
 import 'package:panaux_customer/screens/orders/controllers/orders_controller.dart';
+import '../../home_screen/dashboard.dart';
 import '../models/order_details_model.dart';
-import '../models/razorpay_order_model.dart';
+import '../../../commons/models/razorpay_order_model.dart';
 
 Future<List<OrderDetailsModel>> getOrdersApi() async {
   List<OrderDetailsModel> ordersList = [];
@@ -118,7 +120,7 @@ Future verifyRazorpayOrderApi(
     ) async {
   var dio = Dio();
   try {
-    var api = API.verifyPaymentApi;
+    var api = API.verifyOrderPaymentApi;
     var box = await Hive.openBox("userBox");
     String token = box.get('token');
     var options = Options(headers: {"Authorization": "Bearer " + token});
@@ -130,9 +132,10 @@ Future verifyRazorpayOrderApi(
     print(params);
     var response =
     await dio.patch(api, options: options, data: jsonEncode(params));
+    print(response.statusCode);
+    print(response.data);
     if (response.data["status"] == "success") {
-
-
+      Get.offAll(const DashBoard(index: 2,));
     } else {
       Fluttertoast.showToast(msg: response.data['message']);
     }

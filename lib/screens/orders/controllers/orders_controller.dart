@@ -3,7 +3,7 @@ import 'package:panaux_customer/screens/orders/apis/bookings_api.dart';
 import '../apis/orders_api.dart';
 import '../models/booking_details_model.dart';
 import '../models/order_details_model.dart';
-import '../models/razorpay_order_model.dart';
+import '../../../commons/models/razorpay_order_model.dart';
 
 class OrdersManagementController extends GetxController{
   RxBool gettingOrders=false.obs;
@@ -31,6 +31,7 @@ class OrdersManagementController extends GetxController{
     loading.value=false;
   }
   verifyRazorpayPaidOrder(String paymentId,String orderId,String signature )async{
+    print('verifying....');
     loading.value=true;
     await verifyRazorpayOrderApi(orderId,paymentId,signature);
     loading.value=false;

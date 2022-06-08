@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:panaux_customer/commons/constants.dart';
 import 'package:razorpay_flutter/razorpay_flutter.dart';
+import '../home_screen/dashboard.dart';
 import 'controllers/new_appointment_controller.dart';
 
 
@@ -33,7 +35,7 @@ class _PaymentModeScreenState extends State<PaymentModeScreen> {
     _razorpay.clear();
   }
 
-  void openCheckout() async {
+  void openCheckout(String orderId) async {
     var options = {
       'key': 'rzp_test_GVJRdB4KaByL9z',
       'amount': widget.fee*100,
@@ -41,9 +43,7 @@ class _PaymentModeScreenState extends State<PaymentModeScreen> {
       'description': 'Consultation Fee',
       'retry': {'enabled': true, 'max_count': 1},
       'send_sms_hash': true,
-      'external': {
-        'wallets': ['paytm']
-      }
+      'order_id':orderId,
     };
 
     try {
@@ -54,18 +54,16 @@ class _PaymentModeScreenState extends State<PaymentModeScreen> {
   }
 
   void _handlePaymentSuccess(PaymentSuccessResponse response) {
-    controller.createAppointment(widget.fee, widget.docId, "paymentgateway");
-    // print('Success Response: $response');
-    // Fluttertoast.showToast(
-    //     msg: "SUCCESS: " + response.paymentId!,
-    //     toastLength: Toast.LENGTH_SHORT);
+    controller.verifyRazorpayPaidAppointment(response.paymentId!,response.orderId!,response.signature!);
+    Fluttertoast.showToast(
+        msg:'Success Response: $response');
   }
 
   void _handlePaymentError(PaymentFailureResponse response) {
-  //   print('Error Response: $response');
-  // Fluttertoast.showToast(
-  //       msg: "ERROR: " + response.code.toString() + " - " + response.message!,
-  //       toastLength: Toast.LENGTH_SHORT);
+    Get.offAll(const DashBoard(index: 2,));
+  Fluttertoast.showToast(
+        msg: "ERROR: " + response.code.toString() + " - " + response.message!,
+        toastLength: Toast.LENGTH_SHORT);
   }
 
   void _handleExternalWallet(ExternalWalletResponse response) {
@@ -117,8 +115,9 @@ class _PaymentModeScreenState extends State<PaymentModeScreen> {
                 ),
                 const SizedBox(height: 40,),
                 GestureDetector(
-                  onTap: (){
-                    openCheckout();
+                  onTap: ()async{
+                    await  controller.createRazorpayAppointment(widget.fee, widget.docId);
+                    openCheckout(controller.razorpayOrderModel?.id??"");
                   },
                   child:  Text(
                     '1. Payment Gateway',
@@ -132,7 +131,6 @@ class _PaymentModeScreenState extends State<PaymentModeScreen> {
                 const SizedBox(height: 10,),
                 GestureDetector(
                   onTap: (){
-                    controller.createAppointment(widget.fee, widget.docId, "wallet");
                   },
                   child: Text(
                     '2. Pay using Wallet (Add Money)',

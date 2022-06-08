@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../../commons/models/razorpay_order_model.dart';
 import '../apis/create_appointment.dart';
 
 class NewAppointmentController extends GetxController {
@@ -9,17 +10,22 @@ class NewAppointmentController extends GetxController {
   TextEditingController title = TextEditingController();
   TextEditingController description = TextEditingController();
   String appointmentTime = '';
-
-  createAppointment(int appFees, String docId, String paymentMode) {
+  RazorpayOrderModel? razorpayOrderModel;
+  createRazorpayAppointment(int appFees, String docId) async{
     loading.value = true;
-    createAppointmentApi(
+    razorpayOrderModel=await createAppointmentApi(
         title: title.text,
         description: description.text,
         appointmentFees: appFees,
         appointmentMode: mode.value,
         appointmentTime: appointmentTime,
-        docId: docId,
-        paymentType: paymentMode);
+        docId: docId);
     loading.value = false;
+  }
+  verifyRazorpayPaidAppointment(String paymentId,String orderId,String signature )async{
+    print('verifying....');
+    loading.value=true;
+    await verifyRazorpayAppointmentApi(orderId,paymentId,signature);
+    loading.value=false;
   }
 }

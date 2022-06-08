@@ -23,5 +23,6 @@ class API {
   static String getBookingsApi = baseUrl + "api/doctor_booking/userView";
   static String getPrescriptions =
       baseUrl + "api/client/prescription/clientView/";
-  static String verifyPaymentApi=baseUrl+"api/order/verify_order_payment";
+  static String verifyOrderPaymentApi=baseUrl+"api/order/verify_order_payment";
+  static String verifyAppointmentPaymentApi=baseUrl+"api/doctor_booking";
 }
