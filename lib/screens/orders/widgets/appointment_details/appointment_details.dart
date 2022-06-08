@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:panaux_customer/commons/constants.dart';
+import 'package:panaux_customer/screens/video_call_screen/video_call_screen.dart';
 
 import '../../models/booking_details_model.dart';
 
@@ -176,7 +177,8 @@ class _AppointmentDetailsState extends State<AppointmentDetails> {
                         ),
                       ],
                     ),
-                  )
+                  ),
+	                Center(child: ElevatedButton(onPressed: () { Get.to(VideocallScreen());}, child: Text('Start video call')))
                 ],
               ),
             ),
