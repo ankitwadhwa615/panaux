@@ -9,6 +9,7 @@ import 'package:get/get.dart' as getx;
 
 
 import '../../../commons/api_constants.dart';
+import '../../settings_screen/settings_screen.dart';
 
 Future deleteAddressApi({required String id}) async {
 	var dio = Dio();
@@ -25,7 +26,7 @@ Future deleteAddressApi({required String id}) async {
 			var box = await Hive.openBox("userBox");
 			box.put('userData', responseData);
 			Fluttertoast.showToast(msg: "Deleted Address Successfully");
-			//getx.Get.back();
+			getx.Get.offAll(SettingsScreen());
 		}else{
 			Fluttertoast.showToast(msg: response.data['message']);
 		}

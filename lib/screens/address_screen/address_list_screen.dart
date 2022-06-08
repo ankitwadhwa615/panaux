@@ -43,77 +43,80 @@ class _AddressListState extends State<AddressList> {
 								Get.back();
 							}),
 					),
-					body: Padding(
-						padding: const EdgeInsets.all(18.0),
-						child: Column(
-							crossAxisAlignment: CrossAxisAlignment.start,
-							children: [
-								const Text(
-									'Address List',
-									style: TextStyle(
-										color: Colors.black,
-										fontSize: 25,
-										fontWeight: FontWeight.w400),
-								),
+					body: SingleChildScrollView(
 
-								ListView.builder(
-									shrinkWrap: true,
-									scrollDirection: Axis.vertical,
-									itemCount: controller.addresses.length,
-									itemBuilder: (context, index) {
-										return Card(
-											elevation: 5,
-											child: Padding(
-												padding: const EdgeInsets.all(10.0),
-												child: Row(
+					  child: Padding(
+					  	padding: const EdgeInsets.all(18.0),
+					  	child: Column(
+					  		crossAxisAlignment: CrossAxisAlignment.start,
+					  		children: [
+					  			const Text(
+					  				'Address List',
+					  				style: TextStyle(
+					  					color: Colors.black,
+					  					fontSize: 25,
+					  					fontWeight: FontWeight.w400),
+					  			),
 
-													mainAxisAlignment: MainAxisAlignment.spaceBetween,
-													children: [
-														Column(
-															crossAxisAlignment: CrossAxisAlignment.start,
-															children: [
-																Text(controller.addresses[index]['addressLine1']),
-																Text(controller.addresses[index]['addressLine2']),
-																Text(controller.addresses[index]['pincode'].toString()),
-																Text(controller.addresses[index]['city']),
-																Text(controller.addresses[index]['state']),
-																Text(controller.addresses[index]['country']),
-															],
-														),
+					  			ListView.builder(
+								    physics: ScrollPhysics(),
+					  				shrinkWrap: true,
+					  				scrollDirection: Axis.vertical,
+					  				itemCount: controller.addresses.length,
+					  				itemBuilder: (context, index) {
+					  					return Card(
+					  						elevation: 5,
+					  						child: Padding(
+					  							padding: const EdgeInsets.all(10.0),
+					  							child: Row(
 
-														Column(
-															crossAxisAlignment: CrossAxisAlignment.start,
-															children: [
-																InkWell(
-																	onTap: () {
-																		Get.to(EditAddressScreen(), arguments: [
-																			controller.addresses[index]['addressLine1'],
-																			controller.addresses[index]['addressLine2'],
-																			controller.addresses[index]['pincode'],
-																			controller.addresses[index]['country'],
-																			controller.addresses[index]['state'],
-																			controller.addresses[index]['city'],
+					  								mainAxisAlignment: MainAxisAlignment.spaceBetween,
+					  								children: [
+					  									Column(
+					  										crossAxisAlignment: CrossAxisAlignment.start,
+					  										children: [
+					  											Text(controller.addresses[index]['addressLine1']),
+					  											Text(controller.addresses[index]['addressLine2']),
+					  											Text(controller.addresses[index]['pincode'].toString()),
+					  											Text(controller.addresses[index]['city']),
+					  											Text(controller.addresses[index]['state']),
+					  											Text(controller.addresses[index]['country']),
+					  										],
+					  									),
 
-																		]);
-																	},
-																	child: Icon(Icons.edit)),
-																SizedBox(height: 10,),
-																InkWell(
-																	onTap: () {
-																		controller.addressId =
-																		controller.addresses[index]['_id'];
-																		controller.deleteAddress();
-																	},
-																	child: Icon(Icons.delete)),
+					  									Column(
+					  										crossAxisAlignment: CrossAxisAlignment.start,
+					  										children: [
+					  											InkWell(
+					  												onTap: () {
+					  													Get.to(EditAddressScreen(), arguments: [
+					  														controller.addresses[index]['addressLine1'],
+					  														controller.addresses[index]['addressLine2'],
+					  														controller.addresses[index]['pincode'],
+					  														controller.addresses[index]['country'],
+					  														controller.addresses[index]['state'],
+					  														controller.addresses[index]['city'],
+
+					  													]);
+					  												},
+					  												child: Icon(Icons.edit)),
+					  											SizedBox(height: 10,),
+					  											InkWell(
+					  												onTap: () {
+					  													controller.addressId =
+					  													controller.addresses[index]['_id'];
+					  													controller.deleteAddress();
+					  												},
+					  												child: Icon(Icons.delete)),
 
 
-															],
-														)
-													],
-												),
-											),
-										);
-									}),
+					  										],
+					  									)
+					  								],
+					  							),
+					  						),
+					  					);
+					  				}),
 
 //								Align(
 //									alignment: Alignment.center,
@@ -134,23 +137,24 @@ class _AddressListState extends State<AddressList> {
 //										],
 //									),
 //								),
-								Align(
-									alignment: Alignment.center,
-									child: MaterialButton(
-										onPressed: () {
-											Get.to(GoogleMapScreen(lat: double.parse(controller.lat.value), long: double
-												.parse(controller.long.value),));
-										},
-										height: 40,
-										minWidth: 200,
-										child: const Text(
-											'ADD NEW ADDRESS',
-											style: TextStyle(color: Colors.white),
-										),
-										color: primaryColor,
-									),),
-							],
-						),
+					  			Align(
+					  				alignment: Alignment.center,
+					  				child: MaterialButton(
+					  					onPressed: () {
+					  						Get.to(GoogleMapScreen(lat: double.parse(controller.lat.value), long: double
+					  							.parse(controller.long.value),));
+					  					},
+					  					height: 40,
+					  					minWidth: 200,
+					  					child: const Text(
+					  						'ADD NEW ADDRESS',
+					  						style: TextStyle(color: Colors.white),
+					  					),
+					  					color: primaryColor,
+					  				),),
+					  		],
+					  	),
+					  ),
 					),
 				),
 			),

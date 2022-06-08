@@ -33,8 +33,10 @@ Future<RazorpayOrderModel?> createAppointmentApi({
       "appointmentMode": appointmentMode,
       "appointmentFees": appointmentFees
     };
+
     var response =
         await dio.post(api, data: jsonEncode(params), options: options);
+    print(response.data);
     if (response.data['status'] == "success") {
       var responseData = json.encode(response.data["razorpayOrder"]);
       razorpayOrderModel = razorpayOrderModelFromJson(responseData);
