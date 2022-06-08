@@ -28,7 +28,7 @@ class RazorpayOrderModel {
   int? amountDue;
   String? currency;
   String? receipt;
-  dynamic? offerId;
+  dynamic offerId;
   String? status;
   int? attempts;
   List<dynamic>? notes;

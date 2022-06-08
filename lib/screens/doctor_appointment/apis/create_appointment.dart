@@ -9,6 +9,8 @@ import '../../../commons/models/razorpay_order_model.dart';
 import 'package:get/get.dart';
 import 'package:panaux_customer/screens/home_screen/dashboard.dart';
 
+import '../../orders/controllers/orders_controller.dart';
+
 Future<RazorpayOrderModel?> createAppointmentApi({
   required String docId,
   required String description,
@@ -60,6 +62,7 @@ Future verifyRazorpayAppointmentApi(
     ) async {
   var dio = Dio();
   try {
+    OrdersManagementController controller=Get.put(OrdersManagementController());
     var api = API.verifyAppointmentPaymentApi;
     var box = await Hive.openBox("userBox");
     String token = box.get('token');
@@ -74,6 +77,7 @@ Future verifyRazorpayAppointmentApi(
     await dio.patch(api, options: options, data: jsonEncode(params));
     if (response.data["status"] == "success") {
       Get.offAll(const DashBoard(index: 2,));
+      controller.getBookingsList();
     } else {
       Fluttertoast.showToast(msg: response.data['message']);
     }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 // import 'package:intl/intl.dart';
@@ -6,6 +7,7 @@ import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:panaux_customer/commons/constants.dart';
 import 'package:panaux_customer/screens/wallet/controllers/wallet_controller.dart';
 import 'package:panaux_customer/screens/wallet/widgets/withdraw_popup.dart';
+
 
 class WalletScreen extends StatefulWidget {
   const WalletScreen({Key? key}) : super(key: key);
@@ -18,8 +20,8 @@ class _WalletScreenState extends State<WalletScreen> {
   WalletController controller = Get.put(WalletController());
   @override
   void initState() {
-    controller.getBalance();
     super.initState();
+    controller.getBalance();
   }
 
   @override

@@ -120,6 +120,7 @@ Future verifyRazorpayOrderApi(
     ) async {
   var dio = Dio();
   try {
+    OrdersManagementController controller=Get.put(OrdersManagementController());
     var api = API.verifyOrderPaymentApi;
     var box = await Hive.openBox("userBox");
     String token = box.get('token');
@@ -136,6 +137,8 @@ Future verifyRazorpayOrderApi(
     print(response.data);
     if (response.data["status"] == "success") {
       Get.offAll(const DashBoard(index: 2,));
+      controller.getOrdersList();
+
     } else {
       Fluttertoast.showToast(msg: response.data['message']);
     }

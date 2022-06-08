@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:panaux_customer/commons/constants.dart';
 import 'package:panaux_customer/screens/wallet/controllers/wallet_controller.dart';
-
+import 'package:razorpay_flutter/razorpay_flutter.dart';
 class WithdrawalPopup extends StatefulWidget {
   const WithdrawalPopup({Key? key}) : super(key: key);
 
@@ -12,6 +13,60 @@ class WithdrawalPopup extends StatefulWidget {
 
 class _WithdrawalPopupState extends State<WithdrawalPopup> {
   WalletController controller=Get.put(WalletController());
+  late Razorpay _razorpay;
+  @override
+  void initState() {
+    super.initState();
+    _razorpay = Razorpay();
+    _razorpay.on(Razorpay.EVENT_PAYMENT_SUCCESS, _handlePaymentSuccess);
+    _razorpay.on(Razorpay.EVENT_PAYMENT_ERROR, _handlePaymentError);
+    _razorpay.on(Razorpay.EVENT_EXTERNAL_WALLET, _handleExternalWallet);
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    _razorpay.clear();
+  }
+
+  void openCheckout(String orderId) async {
+    var options = {
+      'key': 'rzp_test_GVJRdB4KaByL9z',
+      'amount': controller.amount,
+      'name': 'Panaux',
+      'description': 'Order Fee',
+      'retry': {'enabled': true, 'max_count': 1},
+      'send_sms_hash': true,
+      'order_id': orderId,
+    };
+
+    try {
+      _razorpay.open(options);
+    } catch (e) {
+      debugPrint('Error: e');
+    }
+  }
+
+  void _handlePaymentSuccess(PaymentSuccessResponse response) {
+    controller.verifyRazorpayTransaction(
+        response.paymentId!, response.orderId!, response.signature!);
+    Fluttertoast.showToast(msg: 'Success Response: $response');
+  }
+
+  void _handlePaymentError(PaymentFailureResponse response) {
+    // print('Error Response: $response');
+    Fluttertoast.showToast(
+        msg: "ERROR: " + response.code.toString() + " - " + response.message!,
+        toastLength: Toast.LENGTH_SHORT);
+  }
+
+  void _handleExternalWallet(ExternalWalletResponse response) {
+    // print('External SDK Response: $response');
+    Fluttertoast.showToast(
+        msg: "EXTERNAL_WALLET: " + response.walletName!,
+        toastLength: Toast.LENGTH_SHORT);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Center(
@@ -69,8 +124,9 @@ class _WithdrawalPopupState extends State<WithdrawalPopup> {
                 Row(
                   children: [
                     InkWell(
-                      onTap: () {
-                        controller.requestWithdrawal();
+                      onTap: () async{
+                        await controller.requestWithdrawal();
+                        openCheckout(controller.razorpayOrderModel?.id??"");
                       },
                       child: Container(
                         color: primaryColor,

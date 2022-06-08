@@ -6,6 +6,8 @@ import 'package:panaux_customer/screens/wallet/apis/withdraw_request_api.dart';
 import 'package:panaux_customer/screens/wallet/models/transaction_details_model.dart';
 import 'package:panaux_customer/screens/wallet/models/wallet_balance_model.dart';
 
+import '../../../commons/models/razorpay_order_model.dart';
+
 class WalletController extends GetxController {
   RxBool loading = false.obs;
   Rx<WalletBalanceModel> balance =
@@ -21,11 +23,16 @@ class WalletController extends GetxController {
   }
 
   TextEditingController amount = TextEditingController();
-
+  RazorpayOrderModel? razorpayOrderModel;
   requestWithdrawal() async {
-    Get.back();
     loading.value = true;
-    await withdrawalRequestApi(amount: int.parse(amount.text));
+    razorpayOrderModel =await withdrawalRequestApi(amount: int.parse(amount.text));
     loading.value = false;
+  }
+  verifyRazorpayTransaction(String paymentId,String orderId,String signature )async{
+    print('verifying....');
+    loading.value=true;
+    await verifyRazorpayTransactionApi(orderId,paymentId,signature);
+    loading.value=false;
   }
 }
