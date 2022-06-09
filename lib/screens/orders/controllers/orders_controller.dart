@@ -44,4 +44,9 @@ class OrdersManagementController extends GetxController{
     });
     gettingBookings.value=false;
   }
+  walletPaidOrder(String id)async{
+    loading.value=true;
+    await walletOrderApi(id);
+    loading.value=false;
+  }
 }

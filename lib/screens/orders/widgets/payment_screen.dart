@@ -6,6 +6,8 @@ import 'package:panaux_customer/commons/constants.dart';
 import 'package:panaux_customer/screens/orders/controllers/orders_controller.dart';
 import 'package:razorpay_flutter/razorpay_flutter.dart';
 
+import '../../wallet/controllers/wallet_controller.dart';
+
 class OrdersPaymentModeScreen extends StatefulWidget {
   final double fee;
   final String id;
@@ -19,9 +21,11 @@ class OrdersPaymentModeScreen extends StatefulWidget {
 
 class _OrdersPaymentModeScreenState extends State<OrdersPaymentModeScreen> {
   late Razorpay _razorpay;
+  WalletController walletController = Get.put(WalletController());
   @override
   void initState() {
     super.initState();
+    walletController.getBalance();
     _razorpay = Razorpay();
     _razorpay.on(Razorpay.EVENT_PAYMENT_SUCCESS, _handlePaymentSuccess);
     _razorpay.on(Razorpay.EVENT_PAYMENT_ERROR, _handlePaymentError);
@@ -73,6 +77,7 @@ class _OrdersPaymentModeScreenState extends State<OrdersPaymentModeScreen> {
   }
 
   OrdersManagementController controller = Get.put(OrdersManagementController());
+
   @override
   Widget build(BuildContext context) {
     return Obx(
@@ -135,14 +140,28 @@ class _OrdersPaymentModeScreenState extends State<OrdersPaymentModeScreen> {
                 const SizedBox(
                   height: 10,
                 ),
-                GestureDetector(
-                  onTap: () {},
-                  child: Text(
-                    '2. Pay using Wallet (Add Money)',
-                    style: TextStyle(
-                        color: primaryColor,
-                        fontSize: 19,
-                        fontWeight: FontWeight.w500),
+                Obx(
+                  () => GestureDetector(
+                    onTap: () async {
+                      if (widget.fee >
+                          walletController.balance.value.balance
+                              .floorToDouble()) {
+                        Fluttertoast.showToast(
+                            msg:
+                                "Low Balance!! Please add money in wallet to proceed");
+                      } else {
+                        await controller.walletPaidOrder(widget.id);
+                      }
+                    },
+                    child: Text(
+                      walletController.loading.value == true
+                          ? '2. Pay using Wallet'
+                          : "2. Pay using Wallet (₹${walletController.balance.value.balance.floorToDouble().toString()})",
+                      style: TextStyle(
+                          color: primaryColor,
+                          fontSize: 19,
+                          fontWeight: FontWeight.w500),
+                    ),
                   ),
                 ),
                 const Divider(

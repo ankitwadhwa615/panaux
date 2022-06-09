@@ -13,7 +13,7 @@ class NewAppointmentController extends GetxController {
   RazorpayOrderModel? razorpayOrderModel;
   createRazorpayAppointment(int appFees, String docId) async{
     loading.value = true;
-    razorpayOrderModel=await createAppointmentApi(
+    razorpayOrderModel=await createRazorpayAppointmentApi(
         title: title.text,
         description: description.text,
         appointmentFees: appFees,
@@ -27,5 +27,16 @@ class NewAppointmentController extends GetxController {
     loading.value=true;
     await verifyRazorpayAppointmentApi(orderId,paymentId,signature);
     loading.value=false;
+  }
+  createWalletAppointment(int appFees, String docId) async{
+    loading.value = true;
+    await createWalletAppointmentApi(
+        title: title.text,
+        description: description.text,
+        appointmentFees: appFees,
+        appointmentMode: mode.value,
+        appointmentTime: appointmentTime,
+        docId: docId);
+    loading.value = false;
   }
 }

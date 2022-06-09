@@ -130,15 +130,45 @@ Future verifyRazorpayOrderApi(
       "razorpay_payment_id": paymentId,
       "razorpay_signature": signature
     };
-    print(params);
     var response =
     await dio.patch(api, options: options, data: jsonEncode(params));
-    print(response.statusCode);
-    print(response.data);
     if (response.data["status"] == "success") {
+      Fluttertoast.showToast(msg: 'Paid Amount Successfully');
       Get.offAll(const DashBoard(index: 2,));
       controller.getOrdersList();
 
+    } else {
+      Fluttertoast.showToast(msg: response.data['message']);
+    }
+  } on DioError catch (e) {
+    if (kDebugMode) {
+      print(e);
+    }
+    Fluttertoast.showToast(msg: "Something went wrong");
+  } on SocketException {
+    Fluttertoast.showToast(msg: "Please check your internet connection");
+  }
+}
+Future walletOrderApi(
+    String id,
+    ) async {
+  var dio = Dio();
+  try {
+    OrdersManagementController controller=Get.put(OrdersManagementController());
+    var api = API.updateOrdersApi;
+    var box = await Hive.openBox("userBox");
+    String token = box.get('token');
+    var options = Options(headers: {"Authorization": "Bearer " + token});
+    var params = {
+      "_id": id,
+      "status": 'paid',
+      "paymentMode": 'wallet',
+    };
+    var response =
+    await dio.patch(api, options: options, data: jsonEncode(params));
+    if (response.data["status"] == "success") {
+      Get.offAll(const DashBoard(index: 2,));
+      controller.getOrdersList();
     } else {
       Fluttertoast.showToast(msg: response.data['message']);
     }
