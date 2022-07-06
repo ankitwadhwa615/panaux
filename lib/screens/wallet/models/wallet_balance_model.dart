@@ -10,7 +10,7 @@ class WalletBalanceModel {
    // required this.availableBalance,
   });
 
-  double balance;
+  dynamic balance;
   //var availableBalance;
 
   factory WalletBalanceModel.fromJson(Map<String, dynamic> json) => WalletBalanceModel(

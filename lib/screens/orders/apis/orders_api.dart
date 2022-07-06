@@ -54,7 +54,7 @@ Future cancelOrderApi(String id) async {
     String token = box.get('token');
     var options = Options(headers: {"Authorization": "Bearer " + token});
     var params = {
-      "_id": id,
+      "id": id,
       "status": 'cancelled',
     };
     var response = await dio.patch(
@@ -90,10 +90,13 @@ Future<RazorpayOrderModel?> razorpayOrderApi(
     String token = box.get('token');
     var options = Options(headers: {"Authorization": "Bearer " + token});
     var params = {
-      "_id": id,
+      "id": id,
       "status": 'paid',
       "paymentMode": 'paymentgateway',
     };
+    print(token);
+    print(api);
+    print(jsonEncode(params));
     var response =
     await dio.patch(api, options: options, data: jsonEncode(params));
     if (response.data["status"] == "success") {
@@ -130,6 +133,8 @@ Future verifyRazorpayOrderApi(
       "razorpay_payment_id": paymentId,
       "razorpay_signature": signature
     };
+    print(api);
+    print(jsonEncode(params));
     var response =
     await dio.patch(api, options: options, data: jsonEncode(params));
     if (response.data["status"] == "success") {
@@ -160,10 +165,12 @@ Future walletOrderApi(
     String token = box.get('token');
     var options = Options(headers: {"Authorization": "Bearer " + token});
     var params = {
-      "_id": id,
+      "id": id,
       "status": 'paid',
       "paymentMode": 'wallet',
     };
+    print(api);
+    print(jsonEncode(params));
     var response =
     await dio.patch(api, options: options, data: jsonEncode(params));
     if (response.data["status"] == "success") {

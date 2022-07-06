@@ -74,7 +74,7 @@ class _PharmacyScreenState extends State<PharmacyScreen> {
                         decoration: BoxDecoration(
                           color: Colors.black,
                           image: DecorationImage(
-                            opacity: 0.5,
+                            // opacity: 0.5,
                             fit:BoxFit.fitWidth,
                             image:NetworkImage(controller.pharmacyList[index].storeImage ?? "", )
                           )

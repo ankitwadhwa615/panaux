@@ -215,7 +215,8 @@ class _WalletScreenState extends State<WalletScreen> {
                                                         borderSide:  BorderSide(color: primaryColor),
                                                       ),
                                                       prefixIcon: Icon(
-                                                        Icons.currency_rupee,
+                                                        Icons.money,
+                                                        // Icons.currency_rupee,
                                                         color: primaryColor,
                                                       ),
                                                     ),

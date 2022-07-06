@@ -6,6 +6,7 @@ import '../models/order_details_model.dart';
 import '../../../commons/models/razorpay_order_model.dart';
 
 class OrdersManagementController extends GetxController{
+  RxInt rating=0.obs;
   RxBool gettingOrders=false.obs;
   RxBool loading=false.obs;
   RxList<OrderDetailsModel> orders=<OrderDetailsModel>[].obs;

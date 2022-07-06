@@ -17,6 +17,7 @@ class OrderDetails extends StatefulWidget {
 
 class _OrderDetailsState extends State<OrderDetails> {
   OrdersManagementController controller = Get.put(OrdersManagementController());
+
   @override
   Widget build(BuildContext context) {
     return Obx(
@@ -99,7 +100,8 @@ class _OrderDetailsState extends State<OrderDetails> {
                   Align(
                     alignment: Alignment.center,
                     child: Text(
-                      DateFormat('dd MMM yyyy hh:mm a').format(widget.data.createdAt!.toLocal()),
+                      DateFormat('dd MMM yyyy hh:mm a')
+                          .format(widget.data.createdAt!.toLocal()),
                       style: const TextStyle(
                           color: Colors.grey,
                           fontWeight: FontWeight.w500,
@@ -190,7 +192,7 @@ class _OrderDetailsState extends State<OrderDetails> {
                   const SizedBox(
                     height: 20,
                   ),
-                  widget.data.status?.toUpperCase() == "CANCELLED"
+                  widget.data.status?.toUpperCase() == "CANCELLED"||widget.data.status?.toUpperCase() == "DELIVERED"
                       ? const SizedBox()
                       : MaterialButton(
                           onPressed: () {
@@ -213,12 +215,81 @@ class _OrderDetailsState extends State<OrderDetails> {
                           color: primaryColor,
                           height: 40,
                           minWidth: Get.width,
-                        )
+                        ),
+                  widget.data.status?.toUpperCase() == "DELIVERED"?rating():const SizedBox()
                 ],
               ),
             ),
           ),
         ),
+      ),
+    );
+  }
+
+  Widget rating() {
+    return Obx(
+      () => Padding(
+        padding: const EdgeInsets.only(right:60.0),
+        child: Column(crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const SizedBox(
+                height: 20,
+              ),
+          const Text(
+            'Add Rating',
+            style: TextStyle(color: Colors.black, fontSize: 20,fontWeight: FontWeight.w600),
+          ),
+          Row(
+            children: [
+              IconButton(
+                  onPressed: () {
+                    controller.rating.value = 1;
+                  },
+                  icon: Icon(Icons.star,size: 40,
+                      color: controller.rating.value >= 1
+                          ? Colors.yellow
+                          : Colors.black.withOpacity(0.2))),
+              IconButton(
+                  onPressed: () {
+                    controller.rating.value = 2;
+                  },
+                  icon: Icon(Icons.star,size: 40,
+                      color: controller.rating.value >= 2
+                          ? Colors.yellow
+                          : Colors.black.withOpacity(0.2))),
+              IconButton(
+                  onPressed: () {
+                    controller.rating.value = 3;
+                  },
+                  icon: Icon(Icons.star,size: 40,
+                      color: controller.rating.value >= 3
+                          ? Colors.yellow
+                          : Colors.black.withOpacity(0.2))),
+              IconButton(
+                  onPressed: () {
+                    controller.rating.value = 4;
+                  },
+                  icon: Icon(Icons.star,size: 40,
+                      color: controller.rating.value >= 4
+                          ? Colors.yellow
+                          : Colors.black.withOpacity(0.2))),
+              IconButton(
+                  onPressed: () {
+                    controller.rating.value = 5;
+                  },
+                  icon: Icon(Icons.star,size: 40,
+                      color: controller.rating.value >= 5
+                          ? Colors.yellow
+                          : Colors.black.withOpacity(0.2))),
+            ],
+          ),Align(
+                alignment: Alignment.bottomRight,
+            child: Text(
+                  '${controller.rating.value} Stars',
+                  style: const TextStyle(color: Colors.black, fontSize: 16,fontWeight: FontWeight.w600),
+                ),
+          ),
+        ]),
       ),
     );
   }

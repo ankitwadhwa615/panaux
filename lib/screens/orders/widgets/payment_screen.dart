@@ -9,7 +9,7 @@ import 'package:razorpay_flutter/razorpay_flutter.dart';
 import '../../wallet/controllers/wallet_controller.dart';
 
 class OrdersPaymentModeScreen extends StatefulWidget {
-  final double fee;
+  final dynamic fee;
   final String id;
   const OrdersPaymentModeScreen({Key? key, required this.fee, required this.id})
       : super(key: key);

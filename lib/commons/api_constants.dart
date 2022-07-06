@@ -1,5 +1,6 @@
 class API {
-  static String baseUrl = "https://api.panaux.com/";
+  // static String baseUrl = "https://api.panaux.com/";
+  static String baseUrl = "https://desi-health-api.herokuapp.com/";
   static String signup = baseUrl + "api/clients/signup";
   static String login = baseUrl + "api/clients/signin";
   static String emailVerification =
