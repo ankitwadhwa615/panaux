@@ -17,7 +17,11 @@ class OrderDetails extends StatefulWidget {
 
 class _OrderDetailsState extends State<OrderDetails> {
   OrdersManagementController controller = Get.put(OrdersManagementController());
-
+  @override
+  void dispose() {
+    controller.dispose();
+    super.dispose();
+  }
   @override
   Widget build(BuildContext context) {
     return Obx(
@@ -192,7 +196,8 @@ class _OrderDetailsState extends State<OrderDetails> {
                   const SizedBox(
                     height: 20,
                   ),
-                  widget.data.status?.toUpperCase() == "CANCELLED"||widget.data.status?.toUpperCase() == "DELIVERED"
+                  widget.data.status?.toUpperCase() == "CANCELLED" ||
+                          widget.data.status?.toUpperCase() == "DELIVERED"
                       ? const SizedBox()
                       : MaterialButton(
                           onPressed: () {
@@ -216,7 +221,9 @@ class _OrderDetailsState extends State<OrderDetails> {
                           height: 40,
                           minWidth: Get.width,
                         ),
-                  widget.data.status?.toUpperCase() == "DELIVERED"?rating():const SizedBox()
+                  widget.data.status?.toUpperCase() == "DELIVERED"
+                      ? widget.data.ratings! ? const SizedBox() :rating()
+                      : const SizedBox()
                 ],
               ),
             ),
@@ -228,24 +235,89 @@ class _OrderDetailsState extends State<OrderDetails> {
 
   Widget rating() {
     return Obx(
-      () => Padding(
-        padding: const EdgeInsets.only(right:60.0),
-        child: Column(crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const SizedBox(
-                height: 20,
-              ),
+      () => controller.ratings.value? Padding(
+        padding: const EdgeInsets.all(10.0),
+        child: Column(crossAxisAlignment: CrossAxisAlignment.center, children: [
+          const SizedBox(
+            height: 20,
+          ),
           const Text(
-            'Add Rating',
-            style: TextStyle(color: Colors.black, fontSize: 20,fontWeight: FontWeight.w600),
+            'Thank you for the Rating',
+            style: TextStyle(
+                color: Colors.black, fontSize: 18, fontWeight: FontWeight.w600),
+          ),
+          const SizedBox(
+            height: 10,
           ),
           Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Icon(Icons.star,
+                      size: 40,
+                      color: controller.rating.value >= 1
+                          ? Colors.yellow
+                          : Colors.black.withOpacity(0.2)),
+              Icon(Icons.star,
+                      size: 40,
+                      color: controller.rating.value >= 2
+                          ? Colors.yellow
+                          : Colors.black.withOpacity(0.2)),
+              Icon(Icons.star,
+                      size: 40,
+                      color: controller.rating.value >= 3
+                          ? Colors.yellow
+                          : Colors.black.withOpacity(0.2)),
+            Icon(Icons.star,
+                      size: 40,
+                      color: controller.rating.value >= 4
+                          ? Colors.yellow
+                          : Colors.black.withOpacity(0.2)),
+              Icon(Icons.star,
+                      size: 40,
+                      color: controller.rating.value >= 5
+                          ? Colors.yellow
+                          : Colors.black.withOpacity(0.2)),
+            ],
+          ),
+          const SizedBox(
+            height: 20,
+          ),
+        ]),
+      ):Padding(
+        padding: const EdgeInsets.all(10.0),
+        child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+          const SizedBox(
+            height: 20,
+          ),
+          const Text(
+            'Add Rating',
+            style: TextStyle(
+                color: Colors.black, fontSize: 20, fontWeight: FontWeight.w600),
+          ),
+          const SizedBox(
+            height: 10,
+          ),
+          controller.rating.value == 0
+              ? const SizedBox()
+              : Align(
+                  alignment: Alignment.bottomCenter,
+                  child: Text(
+                    "${controller.rating.value == 5 ? 'A Great' : controller.rating.value == 4 ? 'A Good' : controller.rating.value == 3 ? 'An Average' : controller.rating.value == 2 ? 'A Bad' : controller.rating.value == 1 ? 'A Worst' : ''} Experience",
+                    style: const TextStyle(
+                        color: Colors.black,
+                        fontSize: 17,
+                        fontWeight: FontWeight.w600),
+                  ),
+                ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
               IconButton(
                   onPressed: () {
                     controller.rating.value = 1;
                   },
-                  icon: Icon(Icons.star,size: 40,
+                  icon: Icon(Icons.star,
+                      size: 40,
                       color: controller.rating.value >= 1
                           ? Colors.yellow
                           : Colors.black.withOpacity(0.2))),
@@ -253,7 +325,8 @@ class _OrderDetailsState extends State<OrderDetails> {
                   onPressed: () {
                     controller.rating.value = 2;
                   },
-                  icon: Icon(Icons.star,size: 40,
+                  icon: Icon(Icons.star,
+                      size: 40,
                       color: controller.rating.value >= 2
                           ? Colors.yellow
                           : Colors.black.withOpacity(0.2))),
@@ -261,7 +334,8 @@ class _OrderDetailsState extends State<OrderDetails> {
                   onPressed: () {
                     controller.rating.value = 3;
                   },
-                  icon: Icon(Icons.star,size: 40,
+                  icon: Icon(Icons.star,
+                      size: 40,
                       color: controller.rating.value >= 3
                           ? Colors.yellow
                           : Colors.black.withOpacity(0.2))),
@@ -269,7 +343,8 @@ class _OrderDetailsState extends State<OrderDetails> {
                   onPressed: () {
                     controller.rating.value = 4;
                   },
-                  icon: Icon(Icons.star,size: 40,
+                  icon: Icon(Icons.star,
+                      size: 40,
                       color: controller.rating.value >= 4
                           ? Colors.yellow
                           : Colors.black.withOpacity(0.2))),
@@ -277,17 +352,44 @@ class _OrderDetailsState extends State<OrderDetails> {
                   onPressed: () {
                     controller.rating.value = 5;
                   },
-                  icon: Icon(Icons.star,size: 40,
+                  icon: Icon(Icons.star,
+                      size: 40,
                       color: controller.rating.value >= 5
                           ? Colors.yellow
                           : Colors.black.withOpacity(0.2))),
             ],
-          ),Align(
-                alignment: Alignment.bottomRight,
-            child: Text(
-                  '${controller.rating.value} Stars',
-                  style: const TextStyle(color: Colors.black, fontSize: 16,fontWeight: FontWeight.w600),
-                ),
+          ),
+          const SizedBox(
+            height: 20,
+          ),
+          // TextFormField(
+          //   minLines:
+          //       6, // any number you need (It works as the rows for the textarea)
+          //   keyboardType: TextInputType.multiline,
+          //   maxLines: null,
+          //   decoration:  InputDecoration(
+          //     hintText: 'share your feedback',
+          //     hintStyle: const TextStyle(color: Colors.grey),
+          //     border: OutlineInputBorder(
+          //      borderSide:BorderSide(color:primaryColor),
+          //       borderRadius: const BorderRadius.all(Radius.circular(20.0)),
+          //     ),
+          //   ),
+          // ),
+          // const SizedBox(
+          //   height: 20,
+          // ),
+          MaterialButton(
+            onPressed: () {
+              controller.addRating(widget.data.vendor!.id!, widget.data.id!, widget.data.client!.id!, );
+            },
+            child: const Text(
+              "Submit",
+              style: TextStyle(color: Colors.white),
+            ),
+            color: primaryColor,
+            height: 40,
+            minWidth: Get.width,
           ),
         ]),
       ),

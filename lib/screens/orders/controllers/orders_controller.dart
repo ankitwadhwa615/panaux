@@ -1,12 +1,14 @@
 import 'package:get/get.dart';
 import 'package:panaux_customer/screens/orders/apis/bookings_api.dart';
 import '../apis/orders_api.dart';
+import '../apis/ratings_api.dart';
 import '../models/booking_details_model.dart';
 import '../models/order_details_model.dart';
 import '../../../commons/models/razorpay_order_model.dart';
 
 class OrdersManagementController extends GetxController{
   RxInt rating=0.obs;
+  RxBool ratings=false.obs;
   RxBool gettingOrders=false.obs;
   RxBool loading=false.obs;
   RxList<OrderDetailsModel> orders=<OrderDetailsModel>[].obs;
@@ -48,6 +50,11 @@ class OrdersManagementController extends GetxController{
   walletPaidOrder(String id)async{
     loading.value=true;
     await walletOrderApi(id);
+    loading.value=false;
+  }
+  addRating(String vendor,String order, String client)async{
+    loading.value=true;
+    await ratingsApi(client,order,vendor,rating.value);
     loading.value=false;
   }
 }

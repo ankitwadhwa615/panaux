@@ -26,4 +26,6 @@ class API {
       baseUrl + "api/client/prescription/clientView/";
   static String verifyOrderPaymentApi=baseUrl+"api/order/verify_order_payment";
   static String verifyAppointmentPaymentApi=baseUrl+"api/doctor_booking";
+  static String addRating =
+      baseUrl + "api/vendors/rating/";
 }

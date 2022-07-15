@@ -6,6 +6,7 @@ String orderDetailsModelToJson(OrderDetailsModel data) => json.encode(data.toJso
 
 class OrderDetailsModel {
   OrderDetailsModel({
+    this.ratings,
     this.payment,
     this.status,
     this.amount,
@@ -19,7 +20,7 @@ class OrderDetailsModel {
     this.updatedAt,
     this.v,
   });
-
+  bool? ratings;
   bool? payment;
   String? status;
   dynamic amount;
@@ -34,6 +35,7 @@ class OrderDetailsModel {
   int? v;
 
   factory OrderDetailsModel.fromJson(Map<String, dynamic> json) => OrderDetailsModel(
+    ratings: json["ratings"] == null ? null : json["ratings"],
     payment: json["payment"] == null ? null : json["payment"],
     status: json["status"] == null ? null : json["status"],
     amount: json["amount"] == null ? null : json["amount"],
@@ -49,6 +51,7 @@ class OrderDetailsModel {
   );
 
   Map<String, dynamic> toJson() => {
+    "ratings": ratings == null ? null : ratings,
     "payment": payment == null ? null : payment,
     "status": status == null ? null : status,
     "amount": amount == null ? null : amount,

@@ -1,0 +1,97 @@
+{
+  "project_info": {
+    "project_number": "41935606993",
+    "project_id": "panaux-c3f8f",
+    "storage_bucket": "panaux-c3f8f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:41935606993:android:32d113de744824b05d61f0",
+        "android_client_info": {
+          "package_name": "com.panaux.customer"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "41935606993-jsb2dqnhcokt2sja1hbpir58odbthjgp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAKSBMERu12Tk95fLntI23O48JVaN9iAYQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "41935606993-jsb2dqnhcokt2sja1hbpir58odbthjgp.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:41935606993:android:81bcf1133251efc35d61f0",
+        "android_client_info": {
+          "package_name": "com.panaux.diagnostics"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "41935606993-jsb2dqnhcokt2sja1hbpir58odbthjgp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAKSBMERu12Tk95fLntI23O48JVaN9iAYQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "41935606993-jsb2dqnhcokt2sja1hbpir58odbthjgp.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:41935606993:android:d641d044ad029f275d61f0",
+        "android_client_info": {
+          "package_name": "com.panaux.pharmacy"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "41935606993-jsb2dqnhcokt2sja1hbpir58odbthjgp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAKSBMERu12Tk95fLntI23O48JVaN9iAYQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "41935606993-jsb2dqnhcokt2sja1hbpir58odbthjgp.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

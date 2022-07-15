@@ -37,17 +37,17 @@ dependencies:
   get:
   image_picker: ^0.8.4+5
   file_picker: ^4.3.3
-  dropdown_search: ^2.0.1
+  dropdown_search:
   geolocator:
   fluttertoast: ^8.0.7
   dio: ^4.0.4
   hive: ^2.0.5
   hive_flutter: ^1.0.0
   flutter_html: ^2.2.1
-  modal_progress_hud_nsn: ^0.1.0-nullsafety-1
+  modal_progress_hud_nsn: ^0.2.1
   intl: ^0.17.0
-  photo_view: ^0.13.0
-  permission_handler: ^8.0.0+2
+  photo_view: ^0.14.0
+#  permission_handler: ^10.0.0
   otp_text_field: ^1.1.2
   country_state_city_picker: ^1.2.8
   google_maps_flutter: ^2.1.5
@@ -56,10 +56,10 @@ dependencies:
   date_format: ^2.0.6
   screenshot: ^1.2.3
   image_gallery_saver: ^1.7.1
-  agora_uikit:
-#  firebase_analytics: ^9.1.5
-#  firebase_core: ^1.14.1
-#  firebase_crashlytics: ^2.6.2
+#  agora_uikit:
+  firebase_analytics: ^9.1.5
+  firebase_core: ^1.14.1
+  firebase_crashlytics: ^2.6.2
   flutter_launcher_icons: ^0.9.2
 dev_dependencies:
   flutter_test:
@@ -70,7 +70,7 @@ dev_dependencies:
   # activated in the `analysis_options.yaml` file located at the root of your
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
-  flutter_lints: ^1.0.0
+  flutter_lints:
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
