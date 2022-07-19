@@ -55,6 +55,7 @@ class OrdersManagementController extends GetxController{
   addRating(String vendor,String order, String client)async{
     loading.value=true;
     await ratingsApi(client,order,vendor,rating.value);
+    getOrdersList();
     loading.value=false;
   }
 }

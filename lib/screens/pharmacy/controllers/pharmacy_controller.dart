@@ -10,7 +10,7 @@ class PharmacyController extends GetxController{
   RxBool loading =false.obs;
   getPharmacyList()async{
     pharmacyList=await getPharmacyApi();
-    pharmacyList.sort((a, b) => b.createdAt!.compareTo(a.createdAt!));
+    pharmacyList.sort((a, b) => b.averageRating!.compareTo(a.averageRating!));
     gettingPharmacy.value=false;
   }
 

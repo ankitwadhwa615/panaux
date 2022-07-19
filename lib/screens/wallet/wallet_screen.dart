@@ -134,7 +134,7 @@ class _WalletScreenState extends State<WalletScreen> {
                               color: primaryColor,
                             ),
                             const SizedBox(
-                              width: 25,
+                              width: 20,
                             ),
                             Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
@@ -160,7 +160,7 @@ class _WalletScreenState extends State<WalletScreen> {
                               ],
                             ),
                             const SizedBox(
-                              width: 30,
+                              width: 23,
                             ),
                             Align(
                               child: ElevatedButton(

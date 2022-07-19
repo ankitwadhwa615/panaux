@@ -20,6 +20,7 @@ Future<List<TransactionDetailsModel>> getWalletHistoryApi() async {
       if (response.data["status"] == "success") {
         for (var element in response.data["data"]) {
           var responseData = json.encode(element);
+          print(responseData);
           data.add((transactionDetailsModelFromJson(responseData)));
         }
       }

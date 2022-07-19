@@ -93,12 +93,12 @@ class _PharmacyScreenState extends State<PharmacyScreen> {
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Row(
-                                  children: const [
-                                    Text('   '),
-                                    Icon(Icons.star,color: Colors.yellow,),
+                                  children:  [
+                                    const Text('   '),
+                                    const Icon(Icons.star,color: Colors.yellow,),
                                     Text(
-                                      "3",
-                                      style: TextStyle(
+                                      controller.pharmacyList[index].averageRating.toString(),
+                                      style: const TextStyle(
                                           fontSize: 16,
                                           fontWeight: FontWeight.w400,color: Colors.white),
                                     ),

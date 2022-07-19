@@ -7,6 +7,9 @@ String pharmacyModelToJson(PharmacyModel data) => json.encode(data.toJson());
 class PharmacyModel {
   PharmacyModel({
     this.address,
+    this.averageRating,
+    this.sumRatings,
+    this.totalRatings,
     this.status,
     this.id,
     this.email,
@@ -27,6 +30,9 @@ class PharmacyModel {
   });
 
   Address? address;
+  dynamic averageRating;
+  int? sumRatings;
+  int? totalRatings;
   bool? status;
   String? id;
   String? email;
@@ -46,6 +52,9 @@ class PharmacyModel {
   String? type;
 
   factory PharmacyModel.fromJson(Map<String, dynamic> json) => PharmacyModel(
+    averageRating: json["average_rating"] == null ? null : json["average_rating"],
+    sumRatings: json["sum_ratings"] == null ? null : json["sum_ratings"],
+    totalRatings: json["total_ratings"] == null ? null : json["total_ratings"],
     address: json["address"] == null ? null : Address.fromJson(json["address"]),
     status: json["status"] == null ? null : json["status"],
     id: json["_id"] == null ? null : json["_id"],
@@ -67,6 +76,9 @@ class PharmacyModel {
   );
 
   Map<String, dynamic> toJson() => {
+    "average_rating":averageRating == null ? null : averageRating,
+    "sum_ratings":sumRatings == null ? null : sumRatings,
+    "total_ratings":totalRatings == null ? null : totalRatings,
     "address": address == null ? null : address?.toJson(),
     "status": status == null ? null : status,
     "_id": id == null ? null : id,

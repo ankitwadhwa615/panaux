@@ -7,9 +7,6 @@ import 'package:get/get.dart' as getx;
 import 'package:hive/hive.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:panaux_customer/commons/api_constants.dart';
-import 'package:panaux_customer/screens/address_screen/address_list_screen.dart';
-import 'package:panaux_customer/screens/home_screen/dashboard.dart';
-
 import '../../settings_screen/settings_screen.dart';
 
 Future addAddressApi(
@@ -23,7 +20,7 @@ Future addAddressApi(
 		required String long,
 		XFile? storeImage}) async {
 	var dio = Dio();
-	FormData formData;
+	// FormData formData;
 	// SignUpResponseModel? signUpResponseModel;
 	try {
 		var api = API.editAddressApi;
@@ -77,7 +74,7 @@ Future addAddressApi(
 			var box = await Hive.openBox("userBox");
 			box.put('userData', responseData);
 			Fluttertoast.showToast(msg: "Added Address Successfully");
-			getx.Get.offAll(SettingsScreen());
+			getx.Get.offAll(const SettingsScreen());
 		} else {
 			Fluttertoast.showToast(msg: response.data['message']);
 		}

@@ -20,7 +20,7 @@ Future ratingsApi(String client,String order,String vendor,int rating) async {
       "client":client,
       "vendor":vendor,
       "order":order,
-      "rating":rating
+      "ratings":rating
     };
     print(token);
     print(params);
@@ -34,7 +34,7 @@ Future ratingsApi(String client,String order,String vendor,int rating) async {
     print(response.data);
     if (response.statusCode==200 || response.statusCode==201) {
       controller.ratings.value=true;
-      controller.getOrdersList();
+
     } else {
       Fluttertoast.showToast(msg: response.data['message']);
     }
