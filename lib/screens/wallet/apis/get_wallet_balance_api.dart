@@ -4,8 +4,8 @@ import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:hive/hive.dart';
-import 'package:panaux_customer/commons/api_constants.dart';
-import 'package:panaux_customer/screens/wallet/models/wallet_balance_model.dart';
+import 'package:ttsf_cloud/commons/api_constants.dart';
+import 'package:ttsf_cloud/screens/wallet/models/wallet_balance_model.dart';
 
 Future<WalletBalanceModel> getWalletBalanceApi() async {
   var dio = Dio();

@@ -5,8 +5,8 @@ import 'package:flutter/foundation.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:hive/hive.dart';
-import 'package:panaux_customer/commons/api_constants.dart';
-import 'package:panaux_customer/screens/wallet/controllers/wallet_controller.dart';
+import 'package:ttsf_cloud/commons/api_constants.dart';
+import 'package:ttsf_cloud/screens/wallet/controllers/wallet_controller.dart';
 import '../../../commons/models/razorpay_order_model.dart';
 
 WalletController controller = Get.put(WalletController());

@@ -1,8 +1,8 @@
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
-import 'package:panaux_customer/screens/home_screen/dashboard.dart';
-import 'package:panaux_customer/screens/login/apis/login_api.dart';
+import 'package:ttsf_cloud/screens/home_screen/dashboard.dart';
+import 'package:ttsf_cloud/screens/login/apis/login_api.dart';
 
 class LoginController extends GetxController {
   RxBool loading = false.obs;

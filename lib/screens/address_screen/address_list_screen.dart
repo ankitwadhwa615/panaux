@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
-import 'package:panaux_customer/commons/constants.dart';
-import 'package:panaux_customer/screens/address_screen/edit_address_screen.dart';
-import 'package:panaux_customer/screens/address_screen/google_map_screen.dart';
+import 'package:ttsf_cloud/commons/constants.dart';
+import 'package:ttsf_cloud/screens/address_screen/edit_address_screen.dart';
+import 'package:ttsf_cloud/screens/address_screen/google_map_screen.dart';
 import 'controllers/address_controller.dart';
 
 class AddressList extends StatefulWidget {

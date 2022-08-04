@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:panaux_customer/commons/constants.dart';
-import 'package:panaux_customer/screens/address_screen/address_screen.dart';
-import 'package:panaux_customer/screens/faq_screen/faq_screen.dart';
-import 'package:panaux_customer/screens/login/login_screen.dart';
-import 'package:panaux_customer/screens/privacy_policy_screen/privacy_policy_screen.dart';
-import 'package:panaux_customer/screens/profile_edit_screen/profile_edit_screen.dart';
-import 'package:panaux_customer/screens/update_password/update_password.dart';
-import 'package:panaux_customer/screens/wallet/wallet_screen.dart';
+import 'package:ttsf_cloud/commons/constants.dart';
+import 'package:ttsf_cloud/screens/address_screen/address_screen.dart';
+import 'package:ttsf_cloud/screens/faq_screen/faq_screen.dart';
+import 'package:ttsf_cloud/screens/login/login_screen.dart';
+import 'package:ttsf_cloud/screens/privacy_policy_screen/privacy_policy_screen.dart';
+import 'package:ttsf_cloud/screens/profile_edit_screen/profile_edit_screen.dart';
+import 'package:ttsf_cloud/screens/update_password/update_password.dart';
+import 'package:ttsf_cloud/screens/wallet/wallet_screen.dart';
 import '../address_screen/address_list_screen.dart';
 import 'controllers/logout_controller.dart';
 

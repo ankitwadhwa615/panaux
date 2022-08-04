@@ -5,9 +5,9 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart' as Getx;
 import 'package:hive/hive.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:panaux_customer/commons/api_constants.dart';
+import 'package:ttsf_cloud/commons/api_constants.dart';
 import '../../orders/controllers/orders_controller.dart';
-import 'package:panaux_customer/screens/home_screen/dashboard.dart';
+import 'package:ttsf_cloud/screens/home_screen/dashboard.dart';
 
 Future addOrderApi({
   required XFile? prescription,

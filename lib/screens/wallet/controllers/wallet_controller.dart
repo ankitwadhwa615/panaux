@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:panaux_customer/screens/wallet/apis/get_wallet_balance_api.dart';
-import 'package:panaux_customer/screens/wallet/apis/wallet_history_api.dart';
-import 'package:panaux_customer/screens/wallet/apis/withdraw_request_api.dart';
-import 'package:panaux_customer/screens/wallet/models/transaction_details_model.dart';
-import 'package:panaux_customer/screens/wallet/models/wallet_balance_model.dart';
+import 'package:ttsf_cloud/screens/wallet/apis/get_wallet_balance_api.dart';
+import 'package:ttsf_cloud/screens/wallet/apis/wallet_history_api.dart';
+import 'package:ttsf_cloud/screens/wallet/apis/withdraw_request_api.dart';
+import 'package:ttsf_cloud/screens/wallet/models/transaction_details_model.dart';
+import 'package:ttsf_cloud/screens/wallet/models/wallet_balance_model.dart';
 import '../../../commons/models/razorpay_order_model.dart';
 
 class WalletController extends GetxController {

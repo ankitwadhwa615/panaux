@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
-import 'package:panaux_customer/commons/constants.dart';
-import 'package:panaux_customer/commons/widgets/text_fields.dart';
+import 'package:ttsf_cloud/commons/constants.dart';
+import 'package:ttsf_cloud/commons/widgets/text_fields.dart';
 import 'controllers/registration_controller.dart';
 
 class EmailVerification extends StatefulWidget {

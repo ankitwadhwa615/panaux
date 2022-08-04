@@ -1,9 +1,9 @@
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:panaux_customer/commons/constants.dart';
-import 'package:panaux_customer/screens/orders/widgets/appointment_details/appointment_details.dart';
-import 'package:panaux_customer/screens/orders/widgets/order_details/order_details.dart';
+import 'package:ttsf_cloud/commons/constants.dart';
+import 'package:ttsf_cloud/screens/orders/widgets/appointment_details/appointment_details.dart';
+import 'package:ttsf_cloud/screens/orders/widgets/order_details/order_details.dart';
 import 'controllers/orders_controller.dart';
 
 class OrdersManagement extends StatefulWidget {

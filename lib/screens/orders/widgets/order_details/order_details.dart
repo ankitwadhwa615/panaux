@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
-import 'package:panaux_customer/commons/constants.dart';
-import 'package:panaux_customer/screens/orders/widgets/payment_screen.dart';
+import 'package:ttsf_cloud/commons/constants.dart';
+import 'package:ttsf_cloud/screens/orders/widgets/payment_screen.dart';
 import '../../controllers/orders_controller.dart';
 import '../../models/order_details_model.dart';
 

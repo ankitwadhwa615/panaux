@@ -3,7 +3,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:hive/hive.dart';
-import 'package:panaux_customer/screens/address_screen/apis/add_address_api.dart';
+import 'package:ttsf_cloud/screens/address_screen/apis/add_address_api.dart';
 import '../../profile_edit_screen/models/user_profile.dart';
 import '../apis/delete_address_api.dart';
 import '../apis/update_address_api.dart';

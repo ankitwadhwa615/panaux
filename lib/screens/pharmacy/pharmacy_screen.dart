@@ -2,8 +2,8 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:panaux_customer/screens/pharmacy/controllers/pharmacy_controller.dart';
-import 'package:panaux_customer/screens/pharmacy/pharmacy_details.dart';
+import 'package:ttsf_cloud/screens/pharmacy/controllers/pharmacy_controller.dart';
+import 'package:ttsf_cloud/screens/pharmacy/pharmacy_details.dart';
 import '../../commons/constants.dart';
 import '../address_screen/address_list_screen.dart';
 

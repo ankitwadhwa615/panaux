@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
-import 'package:panaux_customer/commons/constants.dart';
-import 'package:panaux_customer/screens/doctor_appointment/controllers/new_appointment_controller.dart';
-import 'package:panaux_customer/screens/doctor_appointment/models/doctor_model.dart';
-import 'package:panaux_customer/screens/doctor_appointment/payment_screen.dart';
+import 'package:ttsf_cloud/commons/constants.dart';
+import 'package:ttsf_cloud/screens/doctor_appointment/controllers/new_appointment_controller.dart';
+import 'package:ttsf_cloud/screens/doctor_appointment/models/doctor_model.dart';
+import 'package:ttsf_cloud/screens/doctor_appointment/payment_screen.dart';
 import 'package:date_format/date_format.dart';
 import 'package:intl/intl.dart';
 

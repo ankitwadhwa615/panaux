@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
-import 'package:panaux_customer/commons/constants.dart';
-import 'package:panaux_customer/commons/widgets/disabled_text_fields.dart';
-import 'package:panaux_customer/screens/pharmacy/models/pharmacy_model.dart';
+import 'package:ttsf_cloud/commons/constants.dart';
+import 'package:ttsf_cloud/commons/widgets/disabled_text_fields.dart';
+import 'package:ttsf_cloud/screens/pharmacy/models/pharmacy_model.dart';
 
 import 'controllers/pharmacy_controller.dart';
 

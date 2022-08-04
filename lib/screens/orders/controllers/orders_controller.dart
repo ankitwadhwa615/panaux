@@ -1,5 +1,5 @@
 import 'package:get/get.dart';
-import 'package:panaux_customer/screens/orders/apis/bookings_api.dart';
+import 'package:ttsf_cloud/screens/orders/apis/bookings_api.dart';
 import '../apis/orders_api.dart';
 import '../apis/ratings_api.dart';
 import '../models/booking_details_model.dart';

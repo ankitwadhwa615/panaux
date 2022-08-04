@@ -5,7 +5,7 @@ import 'package:flutter/foundation.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:hive/hive.dart';
-import 'package:panaux_customer/commons/api_constants.dart';
+import 'package:ttsf_cloud/commons/api_constants.dart';
 
 Future updatePasswordApi({
   required String oldPassword,

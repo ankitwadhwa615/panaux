@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:panaux_customer/commons/api_constants.dart';
+import 'package:ttsf_cloud/commons/api_constants.dart';
 
 Future<bool> forgetPasswordApi(String email) async {
   var dio = Dio();

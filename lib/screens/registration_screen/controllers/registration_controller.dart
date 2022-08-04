@@ -1,10 +1,10 @@
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
-import 'package:panaux_customer/commons/constants.dart';
-import 'package:panaux_customer/screens/login/login_screen.dart';
-import 'package:panaux_customer/screens/registration_screen/apis/email_verification_api.dart';
-import 'package:panaux_customer/screens/registration_screen/apis/otp_confirmation_api.dart';
-import 'package:panaux_customer/screens/registration_screen/apis/registration_api.dart';
+import 'package:ttsf_cloud/commons/constants.dart';
+import 'package:ttsf_cloud/screens/login/login_screen.dart';
+import 'package:ttsf_cloud/screens/registration_screen/apis/email_verification_api.dart';
+import 'package:ttsf_cloud/screens/registration_screen/apis/otp_confirmation_api.dart';
+import 'package:ttsf_cloud/screens/registration_screen/apis/registration_api.dart';
 
 class RegistrationController extends GetxController {
   String token='';

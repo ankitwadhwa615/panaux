@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:panaux_customer/commons/constants.dart';
-import 'package:panaux_customer/commons/widgets/text_fields.dart';
-import 'package:panaux_customer/screens/registration_screen/controllers/registration_controller.dart';
+import 'package:ttsf_cloud/commons/constants.dart';
+import 'package:ttsf_cloud/commons/widgets/text_fields.dart';
+import 'package:ttsf_cloud/screens/registration_screen/controllers/registration_controller.dart';
 
 class RegistrationScreen extends StatefulWidget {
   const RegistrationScreen({Key? key}) : super(key: key);

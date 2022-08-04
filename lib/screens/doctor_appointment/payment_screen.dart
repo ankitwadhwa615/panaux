@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
-import 'package:panaux_customer/commons/constants.dart';
+import 'package:ttsf_cloud/commons/constants.dart';
 import 'package:razorpay_flutter/razorpay_flutter.dart';
 import '../home_screen/dashboard.dart';
 import '../wallet/controllers/wallet_controller.dart';

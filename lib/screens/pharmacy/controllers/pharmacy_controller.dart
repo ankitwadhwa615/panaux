@@ -1,7 +1,7 @@
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:panaux_customer/screens/pharmacy/apis/add_order_api.dart';
-import 'package:panaux_customer/screens/pharmacy/models/pharmacy_model.dart';
+import 'package:ttsf_cloud/screens/pharmacy/apis/add_order_api.dart';
+import 'package:ttsf_cloud/screens/pharmacy/models/pharmacy_model.dart';
 import '../apis/get_pharmacy_api.dart';
 
 class PharmacyController extends GetxController{

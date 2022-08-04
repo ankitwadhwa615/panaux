@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
-import 'package:panaux_customer/commons/widgets/text_fields.dart';
-import 'package:panaux_customer/commons/constants.dart';
-import 'package:panaux_customer/screens/address_screen/controllers/address_controller.dart';
+import 'package:ttsf_cloud/commons/widgets/text_fields.dart';
+import 'package:ttsf_cloud/commons/constants.dart';
+import 'package:ttsf_cloud/screens/address_screen/controllers/address_controller.dart';
 import 'package:country_state_city_picker/country_state_city_picker.dart';
 
 class AddressScreen extends StatefulWidget {

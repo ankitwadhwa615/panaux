@@ -2,9 +2,9 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:panaux_customer/commons/constants.dart';
-import 'package:panaux_customer/commons/widgets/text_fields.dart';
-import 'package:panaux_customer/screens/profile_edit_screen/controllers/update_profile_controller.dart';
+import 'package:ttsf_cloud/commons/constants.dart';
+import 'package:ttsf_cloud/commons/widgets/text_fields.dart';
+import 'package:ttsf_cloud/screens/profile_edit_screen/controllers/update_profile_controller.dart';
 
 class BasicDetails extends StatefulWidget {
   const BasicDetails({Key? key}) : super(key: key);

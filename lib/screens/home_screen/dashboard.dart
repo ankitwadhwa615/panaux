@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:panaux_customer/commons/constants.dart';
-import 'package:panaux_customer/screens/orders/orders_management.dart';
-import 'package:panaux_customer/screens/prescription/prescription_screen.dart';
-import 'package:panaux_customer/screens/settings_screen/settings_screen.dart';
+import 'package:ttsf_cloud/commons/constants.dart';
+import 'package:ttsf_cloud/screens/orders/orders_management.dart';
+import 'package:ttsf_cloud/screens/prescription/prescription_screen.dart';
+import 'package:ttsf_cloud/screens/settings_screen/settings_screen.dart';
 
 import '../pharmacy/pharmacy_screen.dart';
 import 'home_screen.dart';

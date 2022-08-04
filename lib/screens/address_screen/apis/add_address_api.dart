@@ -6,7 +6,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart' as getx;
 import 'package:hive/hive.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:panaux_customer/commons/api_constants.dart';
+import 'package:ttsf_cloud/commons/api_constants.dart';
 import '../../settings_screen/settings_screen.dart';
 
 Future addAddressApi(

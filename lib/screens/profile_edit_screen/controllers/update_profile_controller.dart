@@ -2,7 +2,7 @@ import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:panaux_customer/screens/profile_edit_screen/models/user_profile.dart';
+import 'package:ttsf_cloud/screens/profile_edit_screen/models/user_profile.dart';
 import '../apis/update_profile_api.dart';
 
 

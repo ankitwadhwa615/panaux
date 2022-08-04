@@ -1,5 +1,5 @@
 import 'package:get/get.dart';
-import 'package:panaux_customer/screens/privacy_policy_screen/apis/privacy_policy_api.dart';
+import 'package:ttsf_cloud/screens/privacy_policy_screen/apis/privacy_policy_api.dart';
 
 class PrivacyController extends GetxController {
   RxBool loading = false.obs;

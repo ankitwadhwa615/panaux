@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
-import 'package:panaux_customer/screens/faq_screen/apis/faq_api.dart';
-import 'package:panaux_customer/screens/faq_screen/models/faq_model.dart';
+import 'package:ttsf_cloud/screens/faq_screen/apis/faq_api.dart';
+import 'package:ttsf_cloud/screens/faq_screen/models/faq_model.dart';
 
 class FaqController extends GetxController {
 	RxBool loading = false.obs;

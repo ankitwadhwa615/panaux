@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
-import 'package:panaux_customer/commons/constants.dart';
-import 'package:panaux_customer/screens/forgot_password/forgot_password.dart';
-import 'package:panaux_customer/screens/login/controllers/login_controller.dart';
-import 'package:panaux_customer/screens/registration_screen/email_verification.dart';
+import 'package:ttsf_cloud/commons/constants.dart';
+import 'package:ttsf_cloud/screens/forgot_password/forgot_password.dart';
+import 'package:ttsf_cloud/screens/login/controllers/login_controller.dart';
+import 'package:ttsf_cloud/screens/registration_screen/email_verification.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);

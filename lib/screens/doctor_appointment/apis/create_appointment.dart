@@ -4,10 +4,10 @@ import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:hive/hive.dart';
-import 'package:panaux_customer/commons/api_constants.dart';
+import 'package:ttsf_cloud/commons/api_constants.dart';
 import '../../../commons/models/razorpay_order_model.dart';
 import 'package:get/get.dart';
-import 'package:panaux_customer/screens/home_screen/dashboard.dart';
+import 'package:ttsf_cloud/screens/home_screen/dashboard.dart';
 
 import '../../orders/controllers/orders_controller.dart';
 

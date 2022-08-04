@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:panaux_customer/commons/constants.dart';
-import 'package:panaux_customer/screens/doctor_appointment/doctor_appointment.dart';
-import 'package:panaux_customer/screens/pharmacy/pharmacy_screen.dart';
+import 'package:ttsf_cloud/commons/constants.dart';
+import 'package:ttsf_cloud/screens/doctor_appointment/doctor_appointment.dart';
+import 'package:ttsf_cloud/screens/pharmacy/pharmacy_screen.dart';
 import 'controllers/homescreen_controller.dart';
 
 class HomeScreen extends StatefulWidget {

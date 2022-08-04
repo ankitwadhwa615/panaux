@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:panaux_customer/commons/constants.dart';
-import 'package:panaux_customer/screens/doctor_appointment/controllers/doctor_appointment_controller.dart';
+import 'package:ttsf_cloud/commons/constants.dart';
+import 'package:ttsf_cloud/screens/doctor_appointment/controllers/doctor_appointment_controller.dart';
 import 'doctor_profile.dart';
 import 'doctors_list.dart';
 
