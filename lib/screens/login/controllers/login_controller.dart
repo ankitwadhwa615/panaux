@@ -1,7 +1,7 @@
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
-import 'package:ttsf_cloud/screens/home_screen/dashboard.dart';
+import 'package:ttsf_cloud/screens/home_screen/landing_screen.dart';
 import 'package:ttsf_cloud/screens/login/apis/login_api.dart';
 
 class LoginController extends GetxController {
@@ -18,7 +18,7 @@ class LoginController extends GetxController {
     if (status == "ok") {
       loading.value = false;
       Fluttertoast.showToast(msg: 'Logged in successfully');
-      Get.offAll(const DashBoard());
+      Get.offAll(const LandingScreen());
     } else {
       loading.value = false;
     }

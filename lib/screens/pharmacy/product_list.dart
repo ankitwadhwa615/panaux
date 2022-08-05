@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:ttsf_cloud/commons/constants.dart';
 
 import 'models/pharmacy_model.dart';
 
@@ -17,6 +18,7 @@ class _ProductListState extends State<ProductList> {
   bool _nonVegSwitchValue = false;
   @override
   Widget build(BuildContext context) {
+    List<bool> data=[];
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: true,
@@ -127,6 +129,9 @@ class _ProductListState extends State<ProductList> {
                   )
                 ],
               ),
+              const SizedBox(
+                height: 20,
+              ),
               Row(
                 children: [
                   Transform.scale(
@@ -173,13 +178,17 @@ class _ProductListState extends State<ProductList> {
                   ),
                 ],
               ),
+              const SizedBox(
+                height: 15,
+              ),
               SizedBox(
-                height: Get.height * 0.84,
+                height: Get.height * 0.73,
                 child: ListView.builder(
                   shrinkWrap: true,
                   physics: const ClampingScrollPhysics(),
-                  itemCount: 5,
+                  itemCount: 7,
                   itemBuilder: (context, index) {
+                    data.add(false);
                     return Container(
                       margin: const EdgeInsets.only(top: 15),
                       child: Row(
@@ -187,12 +196,14 @@ class _ProductListState extends State<ProductList> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Expanded(
-                            flex:3,
+                            flex: 5,
                             child: Container(
-                              padding: const EdgeInsets.only(top: 10, bottom: 10),
+                              padding:
+                                  const EdgeInsets.only(top: 10, bottom: 10),
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
-                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
                                 children: [
                                   SizedBox(
                                     width: 150,
@@ -245,18 +256,67 @@ class _ProductListState extends State<ProductList> {
                             ),
                           ),
                           Expanded(
-                            flex: 2,
-                            child: SizedBox(
-                              width: 120,
-                              height: 120,
-                              child: ClipRRect(
-                                borderRadius: BorderRadius.circular(15),
-                                child: const Image(
-                                  image: NetworkImage(
-                                      "https://newassets.apollo247.com/pub/media/catalog/product/c/r/cro0007.jpg"),
+                            flex: 3,
+                            child: Stack(children: [
+                              SizedBox(
+                                width: 120,
+                                height: 120,
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(15),
+                                  child: const Image(
+                                    image: NetworkImage(
+                                        "https://newassets.apollo247.com/pub/media/catalog/product/c/r/cro0007.jpg"),
+                                  ),
                                 ),
                               ),
-                            ),
+                              Positioned(
+                                right: 20,
+                                left: 10,
+                                bottom:7,
+                                child: data[index]?
+                                GestureDetector(
+                                    onTap: (){
+                                      setState(() {
+                                        data[index]=true;
+                                      });
+                                    },child:Container(
+                                  decoration: BoxDecoration(color: primaryColor,borderRadius: BorderRadius.circular(7)),
+                                  height: 30,
+                                  width: 90,
+                                  child: const Center(
+                                    child: Text(
+                                      "ADDED",
+                                      textAlign: TextAlign.start,
+                                      style: TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 14,
+                                          fontWeight: FontWeight.w600),
+                                    ),
+                                  ),
+                                )):GestureDetector(
+                                  onTap: (){
+                                    setState(() {
+                                      data[index]=true;
+                                    });
+                                  },
+                                  child: Container(
+                                    decoration: BoxDecoration(color: primaryColor,borderRadius: BorderRadius.circular(7)),
+                                    height: 30,
+                                    width: 90,
+                                    child: const Center(
+                                      child: Text(
+                                        "ADD +",
+                                        textAlign: TextAlign.start,
+                                        style: TextStyle(
+                                            color: Colors.white,
+                                            fontSize: 14,
+                                            fontWeight: FontWeight.w600),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ]),
                           ),
                         ],
                       ),
